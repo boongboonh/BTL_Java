@@ -4,12 +4,3 @@ nhanvien3;123
 nhanvien4;123
 nhanvien5;123
 nhanvien6;123
-<<<<<<< HEAD
-<<<<<<< HEAD
-nhanvien7;123
-=======
-nhanvien8;123
->>>>>>> nguyennhantrungkien
-=======
-nhanvien10;123
->>>>>>> buiducchien
