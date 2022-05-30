@@ -8,10 +8,8 @@ nhanvien6;123
 <<<<<<< HEAD
 nhanvien7;123
 =======
-nhanvien7;123
 nhanvien8;123
 >>>>>>> nguyennhantrungkien
 =======
-nhanvien7;123
 nhanvien10;123
 >>>>>>> buiducchien
