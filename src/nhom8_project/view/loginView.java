@@ -6,9 +6,11 @@ package nhom8_project.view;
 
 import java.util.List;
 import javax.swing.JOptionPane;
-import nhom8_project.entity.User;
+import nhom8_project.entity.User;        
+import nhom8_project.entity.NhanVien;
 import nhom8_project.utils.ReadWriteFile;
 import nhom8_project.view.admin.Admin;
+import nhom8_project.view.nhanvien.NhanVienFrame;
 
 /**
  *
@@ -225,27 +227,27 @@ public class loginView extends javax.swing.JFrame {
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
           ReadWriteFile rwf = new ReadWriteFile();
-           List<User> list = rwf.ReadFromFile();
-           boolean check = false;
- //         UserDao1 user = new UserDao1();         
-          User userlg= new User(username.getText(),String.valueOf(password.getPassword()));
-          if("admin".equals(userlg.getUserName())&&"12345678".equals(userlg.getPassword())){  
+           List<NhanVien> list = rwf.ReadFromNhanVien();
+           boolean check = false;     
+               User userlg= new User(username.getText(),String.valueOf(password.getPassword()));
+          if("admin".equals(userlg.getUserName())&&"1".equals(userlg.getPassword())){  
               this.dispose();
                 new Admin().setVisible(true);    
                 check=true;
                 }
           else{
-            for(User u: list){
+            for(NhanVien u: list){
                  if(userlg.getUserName().equals(u.getUserName())&&userlg.getPassword().equals(u.getPassword())){        
                   check=true;
-                  NhanVien nv = new NhanVien();
+                  NhanVienFrame nv = new NhanVienFrame();
                   this.dispose();
                   nv.setVisible(true);
                   break;
-              }                          
+                }   
+            }                       
         }
    
-    }              
+              
                 if(!check){
                       showMessage("User hoac Password khong dung");
                 }

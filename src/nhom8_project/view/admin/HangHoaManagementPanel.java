@@ -52,7 +52,6 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
         jPanel6 = new javax.swing.JPanel();
         btnEditHHM = new javax.swing.JButton();
         btnAddHHM = new javax.swing.JButton();
-        btnDeleteHHM = new javax.swing.JButton();
         btnClearHHM = new javax.swing.JButton();
         btnDetailHHM = new javax.swing.JButton();
         pricexuatHHM = new javax.swing.JTextField();
@@ -86,15 +85,15 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
 
         jLabel15.setText("Thời gian nhập");
 
-        jLabel16.setText("ID");
+        jLabel16.setText("Mã hàng hoá");
 
-        jLabel17.setText("Name");
+        jLabel17.setText("Tên hàng hoá");
 
         jLabel18.setText("Giá nhập");
 
         jLabel19.setText("Giá xuất");
 
-        jLabel20.setText("Loại hàng");
+        jLabel20.setText("Mã loại hàng");
 
         jLabel21.setText("Số lượng");
 
@@ -148,9 +147,6 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
         btnAddHHM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/new-icon-16.png"))); // NOI18N
         btnAddHHM.setText("Add");
 
-        btnDeleteHHM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/Actions-edit-delete-icon-16.png"))); // NOI18N
-        btnDeleteHHM.setText("Delete");
-
         btnClearHHM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/Button-Close-icon-16.png"))); // NOI18N
         btnClearHHM.setText("Clear");
         btnClearHHM.addActionListener(new java.awt.event.ActionListener() {
@@ -173,10 +169,9 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAddHHM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDetailHHM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDeleteHHM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAddHHM, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDetailHHM))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnEditHHM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -192,10 +187,8 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
                     .addComponent(btnEditHHM, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDeleteHHM, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClearHHM, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDetailHHM, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnClearHHM, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDetailHHM, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -289,10 +282,16 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
                 .addGap(159, 159, 159))
         );
 
-        jLabel22.setText("ID Hàng  :");
+        jLabel22.setText("Mã hàng hoá  :");
+
+        txtSearchIDHH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchIDHHActionPerformed(evt);
+            }
+        });
 
         btnSearchHH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/search-icon-16.png"))); // NOI18N
-        btnSearchHH.setText("Search");
+        btnSearchHH.setText("Tìm kiếm");
         btnSearchHH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchHHActionPerformed(evt);
@@ -306,10 +305,10 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel22)
-                .addGap(52, 52, 52)
+                .addGap(27, 27, 27)
                 .addComponent(txtSearchIDHH, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addComponent(btnSearchHH, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addComponent(btnSearchHH, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
         jPanel7Layout.setVerticalGroup(
@@ -334,7 +333,7 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 263, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -358,7 +357,7 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(349, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -369,7 +368,7 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(790, Short.MAX_VALUE)))
+                    .addContainerGap(447, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -417,11 +416,14 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
         new HangHoaDetailDialog(new Admin(), true).setVisible(true);
     }//GEN-LAST:event_btnDetailHHMActionPerformed
 
+    private void txtSearchIDHHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchIDHHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchIDHHActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddHHM;
     private javax.swing.JButton btnClearHHM;
-    private javax.swing.JButton btnDeleteHHM;
     private javax.swing.JButton btnDetailHHM;
     private javax.swing.JButton btnEditHHM;
     private javax.swing.JButton btnSearchHH;
