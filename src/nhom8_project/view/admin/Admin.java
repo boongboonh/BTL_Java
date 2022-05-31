@@ -68,7 +68,7 @@ public class Admin extends javax.swing.JFrame {
         ToolbarBtnLogout = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JToolBar.Separator();
         ToolbarBtnQLNV = new javax.swing.JButton();
-        ToolbarQLHH = new javax.swing.JButton();
+        ToolbarBtnQLHH = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
         ToolbarBtnAbout = new javax.swing.JButton();
         tabpaneAdmin = new javax.swing.JTabbedPane();
@@ -114,17 +114,17 @@ public class Admin extends javax.swing.JFrame {
         });
         jToolBar1.add(ToolbarBtnQLNV);
 
-        ToolbarQLHH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/gpa-icon.png"))); // NOI18N
-        ToolbarQLHH.setText("Quản lý hàng hoá");
-        ToolbarQLHH.setFocusable(false);
-        ToolbarQLHH.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        ToolbarQLHH.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        ToolbarQLHH.addActionListener(new java.awt.event.ActionListener() {
+        ToolbarBtnQLHH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/gpa-icon.png"))); // NOI18N
+        ToolbarBtnQLHH.setText("Quản lý hàng hoá");
+        ToolbarBtnQLHH.setFocusable(false);
+        ToolbarBtnQLHH.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ToolbarBtnQLHH.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        ToolbarBtnQLHH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ToolbarQLHHActionPerformed(evt);
+                ToolbarBtnQLHHActionPerformed(evt);
             }
         });
-        jToolBar1.add(ToolbarQLHH);
+        jToolBar1.add(ToolbarBtnQLHH);
         jToolBar1.add(jSeparator3);
 
         ToolbarBtnAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/Actions-help-about-icon-16.png"))); // NOI18N
@@ -262,9 +262,9 @@ public class Admin extends javax.swing.JFrame {
        
     }//GEN-LAST:event_menuAboutActionPerformed
 
-    private void ToolbarQLHHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ToolbarQLHHActionPerformed
+    private void ToolbarBtnQLHHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ToolbarBtnQLHHActionPerformed
      addTabbedPaneHH();
-    }//GEN-LAST:event_ToolbarQLHHActionPerformed
+    }//GEN-LAST:event_ToolbarBtnQLHHActionPerformed
 
     /**
      * @param args the command line arguments
@@ -304,8 +304,8 @@ public class Admin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ToolbarBtnAbout;
     private javax.swing.JButton ToolbarBtnLogout;
+    private javax.swing.JButton ToolbarBtnQLHH;
     private javax.swing.JButton ToolbarBtnQLNV;
-    private javax.swing.JButton ToolbarQLHH;
     private javax.swing.JMenuItem ht_exit;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

@@ -1,7 +1,3 @@
-nhanvien1;123
-nhanvien2;123
-nhanvien3;123
-nhanvien4;123
-nhanvien5;123
-nhanvien6;123
+1,binh,123,1
+2,admin,admin,2
 
