@@ -10,67 +10,67 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import nhom8_project.entity.Account;
+import nhom8_project.entity.NhanVien;
 //import nhom8_project.utils.ReadWriteFile;
 
 import nhom8_project.view.admin.Admin;
+import nhom8_project.view.nhanvien.NhanVienForm;
 
-/**
- *
- * @author Admin
- */
 public class loginView extends javax.swing.JFrame {
-
-    public static ArrayList<Account> acc = new ArrayList<Account>();
+    
+    public static ArrayList<NhanVien> nv = new ArrayList<NhanVien>();
 
     //tạo mảng tài khoản
     public loginView() {
         initComponents();
-        
+
         //Cho hộp thoại ra giữa màn hình
         setLocationRelativeTo(null);
 
         //setExtendedState(getExtendedState() | MAXIMIZED_BOTH);
         readFile();
     }
-
+    
     public void readFile() {
-        String file = "Account.txt";
-
+        String file = "NhanVien.txt";
+        
         try {
-
+            
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
             //DefaultTableModel tbmd = (DefaultTableModel) jTable1.getModel();
 
             Object[] lines = br.lines().toArray();
-
+            
             for (int i = 0; i < lines.length; i++) {
                 String[] data = lines[i].toString().split(",");
-                Account a = new Account();
-                a.accountID = Integer.parseInt(data[0]);
+                NhanVien a = new NhanVien();
+                
                 a.accountName = data[1];
                 a.accountPass = data[2];
-                a.role = Integer.parseInt(data[3]);
+               
 
-                acc.add(a);
+                nv.add(a);
             }
-
+            
             br.close();
             fr.close();
-
+            
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(this, "không tìm thấy file");
         } catch (NumberFormatException e1) {
 
             //JOptionPane.showMessageDialog(this, e1);
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex);
+        } catch (ArrayIndexOutOfBoundsException e2) {
+            //JOptionPane.showMessageDialog(this, e2);          
         }
-
+        catch (Exception ex) {
+            JOptionPane.showConfirmDialog(this, ex);
+            
+        }
+        
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -265,39 +265,39 @@ public class loginView extends javax.swing.JFrame {
     }
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
         String name = "", pass = "";
-
+        
         int check = -1;
-
+        
         String pw = new String(inputPass.getPassword());
-
+        
         if (inputName.getText().equals("") || inputPass.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Nhập đầy đủ thông tin");
         } else {
             name = inputName.getText();
             pass = pw;
-
-            for (int i = 0; i < acc.size(); i++) {
-                if ((acc.get(i).accountName.compareTo(name)) == 0 && (acc.get(i).accountPass.compareTo(pass)) == 0) {
-
-                    if (acc.get(i).role == 2) {
+            
+            if ((name.compareTo("admin")) == 0 && (pass.compareTo("admin")) == 0) {
+                this.dispose();
+                new Admin().setVisible(true);
+                
+            } else {
+                for (int i = 0; i < nv.size(); i++) {
+                    if ((nv.get(i).accountName.compareTo(name)) == 0 && (nv.get(i).accountPass.compareTo(pass)) == 0) {
                         this.dispose();
-                        new Admin().setVisible(true);
-                        check = 1;
-                        break;
-                    } else {
-                        this.dispose();
-                        new NhanVien().setVisible(true);
+                        new NhanVienForm().setVisible(true);
                         check = 1;
                         break;
                     }
                 }
+                if (check == -1) {
+                    JOptionPane.showMessageDialog(this, "tài khoản không đúng");
+                    inputPass.setText("");
+                }
             }
-            if (check == -1) {
-                JOptionPane.showMessageDialog(this, "tài khoản không đúng");
-                inputPass.setText("");
-            }
-
+            
         }
+        
+
     }//GEN-LAST:event_btLoginActionPerformed
 
     private void btExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExitActionPerformed
@@ -328,13 +328,17 @@ public class loginView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(loginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(loginView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(loginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(loginView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(loginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(loginView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(loginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(loginView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

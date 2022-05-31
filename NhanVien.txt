@@ -1,0 +1,3 @@
+1,binh,123,Nguyễn văn bình,3/8/2001,nam,5000,20,hà nội, 0909090909,binh@gmail.com
+2,nhanvien,123,nhân viên 2,22/3/2000,nữ,6000,15,hà nam, 0121212121,1@gmail.com
+

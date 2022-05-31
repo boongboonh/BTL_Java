@@ -13,6 +13,7 @@ public class HangHoa {
     public float giaNhap;
     public float giaBan;
     public int loaiHangID;
+    public String nhaSX;
 
     public int getHangHoaID() {
         return hangHoaID;
@@ -52,6 +53,14 @@ public class HangHoa {
 
     public int getLoaiHangID() {
         return loaiHangID;
+    }
+
+    public String getNhaSX() {
+        return nhaSX;
+    }
+
+    public void setNhaSX(String nhaSX) {
+        this.nhaSX = nhaSX;
     }
 
     public void setHangHoaID(int hangHoaID) {
@@ -97,8 +106,8 @@ public class HangHoa {
     public HangHoa(){
         
     }
-    
-    public HangHoa(int hangHoaID, String tenHang, int soLuongCon, int soLuongBan, String HSD, String NSX, String thoiGianNhap, float giaNhap, float giaBan, int loaiHangID) {
+
+    public HangHoa(int hangHoaID, String tenHang, int soLuongCon, int soLuongBan, String HSD, String NSX, String thoiGianNhap, float giaNhap, float giaBan, int loaiHangID, String nhaSX) {
         this.hangHoaID = hangHoaID;
         this.tenHang = tenHang;
         this.soLuongCon = soLuongCon;
@@ -109,8 +118,7 @@ public class HangHoa {
         this.giaNhap = giaNhap;
         this.giaBan = giaBan;
         this.loaiHangID = loaiHangID;
+        this.nhaSX = nhaSX;
     }
-    
-    
     
 }
