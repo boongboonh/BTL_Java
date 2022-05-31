@@ -32,14 +32,9 @@ public class DateFormat {
         
         new DateFormat().DateParse("29/02/2001");
 //        LocalDate ldd = LocalDate.parse("2017/03/12");
-//        System.out.println(ldd);
-               Pattern p = Pattern.compile("\\d+");
-            if(p.matcher("1").find()){
-                  System.out.println("Ok");
-                  
-            }else{
-                System.err.print("Not ok");
-            }
+//        System.out.println(ldd); 
+                System.out.println("       ngu dot     ");
+              System.out.println("       ngu dot     ".trim());
               
         
            

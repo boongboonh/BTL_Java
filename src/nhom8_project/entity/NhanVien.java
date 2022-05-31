@@ -34,7 +34,7 @@ public class NhanVien {
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.id = id.trim();
     }
 
     public String getName() {
@@ -42,7 +42,7 @@ public class NhanVien {
     }
 
     public void setName(String name) {
-        this.name=name;
+        this.name=name.trim();
     }
 
     public String getAddress() {
@@ -50,7 +50,7 @@ public class NhanVien {
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.address = address.trim();
     }
 
     public String getEmail() {
@@ -58,12 +58,12 @@ public class NhanVien {
     }
 
     public void setEmail(String email) {
-       this.email=email;
+       this.email=email.trim();
     }
     public void setPassword(String pass){
         Pattern p = Pattern.compile(".{6,}");
         if(p.matcher(pass.trim()).find()){
-          this.password=pass;
+          this.password=pass.trim();
         }else{
              new loginView().showMessage("Password phải lớn hơn 6 kí tự");  
         }
@@ -78,7 +78,7 @@ public class NhanVien {
 
     public void setBirthday(String birthday) {
         
-         this.birthday =birthday;
+         this.birthday =birthday.trim();
     }
 
     public String getPhone() {
@@ -86,7 +86,7 @@ public class NhanVien {
     }
 
     public void setPhone(String phone) {
-      this.phone=phone;
+      this.phone=phone.trim();
        
     }
 
@@ -132,12 +132,10 @@ public class NhanVien {
 
     @Override
     public String toString() {
-            return id+";"+name+";"+birthday+";"+address+";"+email+";"+phone+";"+salary+";"+workday+";"+male+";"+(id+name)+";"+password+";"+salary*workday;
+            return id+";"+name+";"+birthday+";"+address+";"+email+";"+phone+";"+salary+";"+workday+";"+male+";"+(id+name).replaceAll("\\s","").toLowerCase()+";"+password+";"+salary*workday;
     }
 
-    public String setId() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
     
    
 }
