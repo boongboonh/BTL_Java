@@ -20,10 +20,10 @@ import nhom8_project.utils.ReadWriteFile;
  *
  * @author Admin
  */
-public class NhanVienManagementPanel extends javax.swing.JPanel {
+public final class NhanVienManagementPanel extends javax.swing.JPanel {
     private DefaultTableModel tbModel=null;
     private Object [] Title= new Object[]{"Mã nhân viên","Tên nhân viên","Ngày sinh","Địa chỉ","Chức vụ","Giới tính","Email","Số điện thoại"};
-    private NhanVienList nvlist = new NhanVienList();
+    private NhanVienList nvlist;
     
     private String idCheck;
     /**
@@ -39,6 +39,7 @@ public class NhanVienManagementPanel extends javax.swing.JPanel {
         
     }
     public void initTable(){
+        nvlist= new NhanVienList();
         tbModel = new DefaultTableModel();
         tbModel.setColumnIdentifiers(Title);
         nvlist.setModel(tbModel);
@@ -74,139 +75,81 @@ public class NhanVienManagementPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this,message);
     }
        public void addNhanVien(){
-       while(true){
-       ArrayList<NhanVien> list = new ArrayList<NhanVien>();
-       NhanVien nv = new NhanVien();
-//       String id=idNVM.getText();
-//       
-//       if(id==null||id.trim().equals("")){
-//           showMessage("Mã nhân viên không được để trống");
-//           break; 
-//           
-//       }else if(nv.setId(id)){
-//       
-//       } else{
-//           showMessage("Mã nhân viên đã tồn tại");
-//           break;
-//       }
-        int size=new ReadWriteFile().ReadFromNhanVien().size();
-        size++;
-        String id=Integer.toString(new DateFormat().Year(LocalDate.now()))+"nv"+Integer.toString(size);
-       nv.setId(id); 
-       // Gán regex để bắt lỗi 
-       Pattern rgname = Pattern.compile("^[a-zA-z ]+"); 
-       Pattern rgemail = Pattern.compile("^\\w+@\\w+(\\.\\w+){1,2}$");
-       Pattern rgphone = Pattern.compile("^0\\d+{9}");
-//       Pattern rgsalary = Pattern.compile("\\d+");
-//       Pattern rgworkday=rgsalary;       
-       //Kiểm tra Họ tên
-       if(nameNVM.getText()!=null&&!nameNVM.getText().trim().equals("")){          
-            if(rgname.matcher(nameNVM.getText().trim()).find()){
-                 nv.setName(nameNVM.getText());        
-            }else{           
-              showMessage("Tên chỉ chứa kí tự chữ");
-              break;         
-            }
-        }else{
-           showMessage("Tên không được để trống");
-           break;
-       }
-         //Kiểm tra ngày sinh
-         if(birthdayNVM.getText()!=null&&!birthdayNVM.getText().trim().equals("")){
-        if( new DateFormat().DateParse(birthdayNVM.getText().trim())){
-            nv.setBirthday(birthdayNVM.getText());
-        }else break;
-    }   else{
-             showMessage("Ngày tháng không được để trống");
-             break;
-         }
-        //Kiểm tra lương
-//        if(priceNVM.getText()!=null&&!priceNVM.getText().trim().equals("")){
-//        if(rgsalary.matcher(priceNVM.getText().trim()).find()){
-//           nv.setSalary(Integer.parseInt(priceNVM.getText()));
-//        }else{
-//           showMessage("Lương chỉ chứa kí tự số");
-//           break;
-//        }
-//        }else{
-//            showMessage("Lương không được để trống");
-//            break;
-//        }
-//        //Kiểm tra số ngày làm việc
-//        if(workdayNVM.getText()!=null&&!workdayNVM.getText().trim().equals("")){
-//        if(rgworkday.matcher(workdayNVM.getText().trim()).find()){
-//           nv.setWorkday(Integer.parseInt(workdayNVM.getText()));
-//        }else{
-//           showMessage("Số ngày làm  chỉ chứa kí tự số");
-//           break;
-//        }
-//        }else{
-//            showMessage("Số ngày làm không được bỏ trống");
-//            break;
-//        }
-        //Check addredss
-        if(addressNVM.getText()!=null&&!addressNVM.getText().trim().equals("")){
-              nv.setAddress(addressNVM.getText());
-        }else{
-            showMessage("Địa chỉ không được để trống");
-            break;
-        }
-      
-        //Kiểm tra sdt
-        if(phoneNVM.getText()!=null&&!phoneNVM.getText().trim().equals("")){
-             if(rgphone.matcher(phoneNVM.getText().trim()).find()){
-                nv.setPhone(phoneNVM.getText());
-                }else{
-                 showMessage("Số điện thoại chỉ chứa 10 kí tự số và bắt đầu từ số 0");
-                break;
-             }
-        }else{
-            showMessage("Số điện thoại không được để trống");
-            break;
-        }
-       
-        //Kiểm tra email'
-        if(emailNVM.getText()!=null&&!emailNVM.getText().trim().equals("")){
-        if(rgemail.matcher(emailNVM.getText().trim()).find()){
-          nv.setEmail(emailNVM.getText());
-        }else{         
-         showMessage("Email không đúng định dạng , ví dụ email@gmail.com");
-         break;
-        }  
-        }else{
-            showMessage("Email không được bỏ trống");
-            break;          
-        }       
-            //Chức vụ
-            switch (cbcv.getSelectedIndex()) {
-                case 0:
-                    nv.setChucVu("Bán hàng");
-                    nv.setUserName(id);
-                    nv.setPassword("1234567");
+         
+               while(true){
+                    ArrayList<NhanVien> list = new ArrayList<NhanVien>();
+                    NhanVien nv = new NhanVien();
+                    int size=new ReadWriteFile().ReadFromNhanVien().size();       
+                    String id=Integer.toString(new DateFormat().Year(LocalDate.now()))+"nv"+Integer.toString(++size);
+                    nv.setId(id);
+                    if(!nv.setName(nameNVM.getText())){
+                        break;
+                    }
+                    if(!nv.setBirthday(birthdayNVM.getText())){
+                        break;
+                    }
+                    if(!nv.setAddress(addressNVM.getText())){
+                        break;
+                    }
+                    if(!nv.setPhone(phoneNVM.getText())){
+                        break;
+                    }
+                    if(!nv.setEmail(emailNVM.getText())){
+                        break;
+                    }     
+                    nv.setChucVu(cbcv.getSelectedIndex(),id);                                     
+                    nv.setSex(rdNam.isSelected());
+                    list.add(nv);
+                    new ReadWriteFile().WriteToFile(list,"nhanvien.dat",true);
+                    JOptionPane.showMessageDialog(this,"Thêm thành công");
+                    initTable();
+                    ClearNV();
                     break;
-                case 1:
-                    nv.setChucVu("Bảo trì hệ thống");
-                    break;
-                case 2:
-                    nv.setChucVu("Bảo vệ");
-                    break;
-            }
-        //Giới tính
-       if(rdNam.isSelected()==true){
-          nv.setMale(true);
-       }else if(rdNu.isSelected()==true){
-           nv.setMale(false);
-       }
-        list.add(nv);
-        new ReadWriteFile().WriteToFile(list,"nhanvien.dat",true);
-        JOptionPane.showMessageDialog(this,"Thêm thành công");
-        initTable();
-        ClearNV();
-        break;
         }
-       
+        
+    }
+    public void EditNV(){
+       try {
+           nvlist = new NhanVienList();
+           ArrayList<NhanVien> listread = nvlist.getList();
+               while(true){                  
+                    NhanVien nv = nvlist.FindById(idCheck);
+                    if(nv!=null){
+                        nv.setId(idCheck);                   
+                        if(!nv.setName(nameNVM.getText())){
+                            break;
+                        }
+                        if(!nv.setBirthday(birthdayNVM.getText())){
+                            break;
+                        }
+                        if(!nv.setAddress(addressNVM.getText())){
+                            break;
+                        }
+                        if(!nv.setPhone(phoneNVM.getText())){
+                            break;
+                        }
+                        if(!nv.setEmail(emailNVM.getText())){
+                            break;
+                        }     
+                        nv.setChucVu(cbcv.getSelectedIndex(),idCheck);                                     
+                        nv.setSex(rdNam.isSelected());
+                        int index= listread.indexOf(nv);
+                        listread.remove(index);
+                        listread.add(index, nv);
+                        new ReadWriteFile().WriteToFile(listread,"nhanvien.dat",false);
+                        showMessage("Sửa thành công");
+                        break;  
+                    }
+                    showMessage("Mã nhân viên không tồn tại");
+                     break;
+        }
+           } catch (Exception e) {
+            e.printStackTrace();
+            showMessage("Lỗi "+ e.getMessage());
+           }  
     }
     public void ClearNV(){
+        try {
         nameNVM.setText("");
         birthdayNVM.setText("");
         addressNVM.setText("");
@@ -215,6 +158,10 @@ public class NhanVienManagementPanel extends javax.swing.JPanel {
         btnAddNVM.setEnabled(true);
         btnEditNVM.setEnabled(false);
         btnDetailNVM.setEnabled(false);
+        } catch (Exception e) {
+            
+        }
+       
     }
     public void searchNV(String id){
         try {           
@@ -233,9 +180,9 @@ public class NhanVienManagementPanel extends javax.swing.JPanel {
                 }else{
                     cbcv.setSelectedIndex(1);
                 }
-                if(a.isMale()){
+                if("Nam".equals(a.getSex())){
                     rdNam.setSelected(true);
-                }else if(!a.isMale()){
+                }else if(a.getSex().equals("Nữ")){
                     rdNu.setSelected(true);
                 }
                 btnAddNVM.setEnabled(false);
@@ -248,10 +195,8 @@ public class NhanVienManagementPanel extends javax.swing.JPanel {
         } catch (Exception e) {
             e.printStackTrace();
             showMessage("Lỗi "+ e.getMessage());
-        }
-       
-    }
-     
+        }     
+    }   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -658,9 +603,8 @@ public class NhanVienManagementPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAddNVMActionPerformed
 
     private void btnEditNVMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditNVMActionPerformed
-        new NhanVienController().EditNVM(idCheck, nameNVM.getText(), birthdayNVM.getText(), addressNVM.getText(), 
-                phoneNVM.getText(), emailNVM.getText(), cbcv.getSelectedIndex(), rdNam.isSelected(), rdNu.isSelected());
-        showListNV(new ReadWriteFile().ReadFromNhanVien());
+        EditNV();
+        initTable();
     }//GEN-LAST:event_btnEditNVMActionPerformed
 
     private void nameNVMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameNVMActionPerformed

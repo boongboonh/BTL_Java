@@ -7,6 +7,7 @@ package nhom8_project.entity;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.regex.Pattern;
+import nhom8_project.utils.DateFormat;
 import nhom8_project.view.loginView;
 
 /**
@@ -14,15 +15,42 @@ import nhom8_project.view.loginView;
  * @author Admin
  */
 public class NhanVien implements Serializable{
-    private String id,name,address,email,userName,password,birthday,phone,chucVu;
-//    private int salary,workday,TotalSalary;   
-    private boolean male;
+    private String id,name,address,email,userName,password,birthday,phone,chucVu,sex;
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(boolean sex) {
+        if(sex){
+          this.sex="Nam";
+       }else if(!sex){
+           this.sex="Nữ";      
+        }
+    }
+    // bắt  lỗi regex
+       Pattern rgname = Pattern.compile("^[a-zA-z ]+"); 
+       Pattern rgemail = Pattern.compile("^\\w+@\\w+(\\.\\w+){1,2}$");
+       Pattern rgphone = Pattern.compile("^0\\d+{9}");
     public String getChucVu() {
         return chucVu;
     }
-
-    public void setChucVu(String chucVu) {
-        this.chucVu = chucVu;
+    
+    public void setChucVu(int chucvu,String id) {
+        switch (chucvu) {
+                case 0:
+                    this.chucVu ="Bán hàng";
+                    this.userName=id;
+                    this.password="1234567";
+                    break;
+                case 1:
+                   this.chucVu="Bảo trì hệ thống";
+                    break;
+                case 2:
+                    this.chucVu="Bảo vệ";
+                    break;
+            }
+        
     }
     public void setUserName( String name){
          this.userName=name;
@@ -61,32 +89,75 @@ public class NhanVien implements Serializable{
         return name;
     }
 
-    public void setName(String name) {
-        this.name=name.trim();
+    public boolean setName(String name) {
+        boolean check =false;
+        while(true){
+           if(name!=null&&!name.equals("")){          
+                if(rgname.matcher(name).find()){
+                    this.name=name;       
+                    check= true;
+                }else{           
+                 new loginView().showMessage("Tên chỉ chứa kí tự chữ");                           
+                }
+            }else{
+               new loginView().showMessage("Tên không được để trống");             
+           }
+           break;
+        }
+        return check;
+   
     }
 
     public String getAddress() {
+        
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address.trim();
+    public boolean setAddress(String address) {     
+        boolean check=false;
+        while(true){
+            if(address!=null&&!address.equals("")){
+              this.address = address;
+              check=true;
+            }else{
+                new loginView().showMessage("Địa chỉ không được để trống");         
+        }
+            break;
+        }
+        return check;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-       this.email=email.trim();
+    public boolean setEmail(String email) {
+       boolean check=false;
+        while(true){
+           if(email!=null&&!email.equals("")){
+                if(rgemail.matcher(email).find()){
+                    this.email=email;
+                    check=true;               
+                }else{         
+                     new loginView().showMessage("Email không đúng định dạng , ví dụ email@gmail.com");                    
+                }  
+            }else{
+                    new loginView().showMessage("Email không được bỏ trống");                       
+                } 
+           break;
+        }
+        return check;
     }
-    public void setPassword(String pass){
+    public boolean setPassword(String pass){
+        boolean check=false;
         Pattern p = Pattern.compile(".{6,}");
         if(p.matcher(pass.trim()).find()){
           this.password=pass.trim();
+          check=true;
         }else{
              new loginView().showMessage("Password phải lớn hơn 6 kí tự");  
         }
+        return check;
     }
     public String getPassword() {
         return password;
@@ -96,17 +167,42 @@ public class NhanVien implements Serializable{
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
-        
-         this.birthday =birthday.trim();
+    public boolean setBirthday(String birthday) {
+        boolean check= false;
+        while(true){
+           if(birthday!=null&&!birthday.equals("")){
+                if( new DateFormat().DateParse(birthday)){
+                this.birthday =birthday;
+                check=true;
+            }else break;
+            }   else{
+                    new loginView().showMessage("Ngày tháng không được để trống");                
+            }
+           break;
+        }
+       return check;
     }
 
     public String getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
-      this.phone=phone.trim();
+    public boolean setPhone(String phone) {
+        boolean check=false;
+        while(true){
+          if(phone!=null&&!phone.equals("")){
+             if(rgphone.matcher(phone).find()){
+                this.phone=phone;
+                check=true;
+                }else{
+                 new loginView().showMessage("Số điện thoại chỉ chứa 10 kí tự số và bắt đầu từ số 0");                
+             }
+        }else{
+           new loginView().showMessage("Số điện thoại không được để trống");          
+        }  
+           break;
+        }
+      return check;
        
     }
 
@@ -126,16 +222,10 @@ public class NhanVien implements Serializable{
 //         this.workday=workday;
 //    }
 
-    public boolean isMale() {
-        return male;
-    }
-
-    public void setMale(boolean male) {
-        this.male = male;
-    }
+  
     public NhanVien(){       
     }
-    public NhanVien(String id, String name, String birthday, String address, String email, String phone,String chucvu,boolean male,String userName,String password) {
+    public NhanVien(String id, String name, String birthday, String address, String email, String phone,String chucvu,String sex,String userName,String password) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -147,13 +237,13 @@ public class NhanVien implements Serializable{
 //        this.salary = salary;
 //        this.workday = workday;
         this.chucVu=chucvu;
-        this.male = male;
+        this.sex = sex;
 //        this.TotalSalary=salary*workday;
     }
 
     @Override
     public String toString() {
-            return id+";"+name+";"+birthday+";"+address+";"+email+";"+phone+";"+chucVu+";"+male+";"+userName+";"+password;
+            return id+";"+name+";"+birthday+";"+address+";"+email+";"+phone+";"+chucVu+";"+sex+";"+userName+";"+password;
     }
     @Override
     public boolean equals(Object obj) {

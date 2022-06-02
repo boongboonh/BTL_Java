@@ -14,7 +14,9 @@ import nhom8_project.utils.ReadWriteFile;
  */
 public class NhanVienList {
     private ArrayList<NhanVien> list = new ReadWriteFile().ReadFromNhanVien();
-    
+    public ArrayList<NhanVien> getList(){
+        return list;
+    }
     private int currentIndex=0;
     public void first(){
         if(currentIndex>0)
@@ -42,21 +44,21 @@ public class NhanVienList {
     public void add(NhanVien nv){
         list.add(nv);
     }
-    public boolean update(NhanVien nv){
-        NhanVien existedNV = FindById(nv.getId());
-        boolean check=false;
-        if(existedNV !=null){
-            existedNV.setName(nv.getName());
-            existedNV.setBirthday(nv.getBirthday());
-            existedNV.setAddress(nv.getAddress());
-            existedNV.setPhone(nv.getPhone());
-            existedNV.setEmail(nv.getEmail());
-            existedNV.setChucVu(nv.getChucVu());
-            existedNV.setMale(nv.isMale());
-            check=true;
-        }
-        return check;
-    }
+//    public boolean update(NhanVien nv){
+//        NhanVien existedNV = FindById(nv.getId());
+//        boolean check=false;
+//        if(existedNV !=null){
+//            existedNV.setName(nv.getName());
+//            existedNV.setBirthday(nv.getBirthday());
+//            existedNV.setAddress(nv.getAddress());
+//            existedNV.setPhone(nv.getPhone());
+//            existedNV.setEmail(nv.getEmail());
+//            existedNV.setChucVu(nv.getChucVu());
+//            existedNV.setMale(nv.isMale());
+//            check=true;
+//        }
+//        return check;
+//    }
     public String Male(boolean male){
         if(male){
             return "Nam";
@@ -68,7 +70,7 @@ public class NhanVienList {
         tbModel.setRowCount(0);
         for(NhanVien nv:list){
             Object[] row = new Object[]{
-                nv.getId(),nv.getName(),nv.getBirthday(),nv.getAddress(),nv.getChucVu(),Male(nv.isMale())  
+                nv.getId(),nv.getName(),nv.getBirthday(),nv.getAddress(),nv.getChucVu(),nv.getSex()
                     ,nv.getEmail(),nv.getPhone()                  
             };
         tbModel.addRow(row);

@@ -1,6 +1,3 @@
-2022nv1;ngo hung;11/10/2001;a;e@e.d;03;Bán hàng;true;2022nv1;1234567
-2022nv2;trung kien;11/10/2001;033;r@r.u;01;Tư vấn khách hàng;true;2022nv2;1234567
-2022nv3;duc chien;11/10/2001;1;m@e.u;01;Bán hàng;true;2022nv3;1234567
-2022nv4;binh;11/10/2001;bn;a@u.n;05;Bảo vệ;false;2022nv4;1234567
-2022nv5;bui duc chien 1;11/10/2001;vb;1@e.u;01;Bảo trì hệ thống;true;2022nv5;1234567
-2022nv1;null;null;null;null;null;null;false;null;null
+2022nv1;A;11/10/2001;null;e@fmai.c;01;Bán hàng;Nam;2022nv1;1234567
+2022nv2;null;01/01/0001;null;null@e.du;0001;Bảo vệ;Nam;2022nv2;1234567
+2022nv3;a;11/10/2011;a;1@e.e;01;Bảo trì hệ thống;Nữ;null;null
