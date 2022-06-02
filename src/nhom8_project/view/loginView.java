@@ -26,6 +26,7 @@ public class loginView extends javax.swing.JFrame {
         //Cho hộp thoại ra giữa màn hình
         setLocationRelativeTo(null);
         //setExtendedState(getExtendedState() | MAXIMIZED_BOTH);
+       
     }
 
     /**
@@ -225,6 +226,7 @@ public class loginView extends javax.swing.JFrame {
       public void showMessage(String message){
         JOptionPane.showMessageDialog(this,message);
     }
+     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
           ReadWriteFile rwf = new ReadWriteFile();
            List<NhanVien> list = rwf.ReadFromNhanVien();

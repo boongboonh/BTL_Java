@@ -6,7 +6,6 @@ package nhom8_project.utils;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.regex.Pattern;
 import nhom8_project.view.loginView;
 
 /**
@@ -14,6 +13,9 @@ import nhom8_project.view.loginView;
  * @author Admin
  */
 public class DateFormat {
+    public int Year(LocalDate a){
+        return a.getYear();
+    }
     public boolean DateParse(String date){
         DateTimeFormatter dtf= DateTimeFormatter.ofPattern("dd/MM/yyyy");
         try {
@@ -35,8 +37,9 @@ public class DateFormat {
 //        System.out.println(ldd); 
                 System.out.println("       ngu dot     ");
               System.out.println("       ngu dot     ".trim());
-              
-        
+ //       System.out.println(new DateFormat().Year(LocalDate.now()));                    
            
     }
+
+  
 }

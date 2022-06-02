@@ -4,38 +4,58 @@
  */
 package nhom8_project.entity;
 
+import java.io.Serializable;
+import java.util.Objects;
 import java.util.regex.Pattern;
-import nhom8_project.utils.DateFormat;
 import nhom8_project.view.loginView;
 
 /**
  *
  * @author Admin
  */
-public class NhanVien {
-    private String id,name,address,email,userName,password,birthday,phone;
-    private int salary,workday,TotalSalary;   
+public class NhanVien implements Serializable{
+    private String id,name,address,email,userName,password,birthday,phone,chucVu;
+//    private int salary,workday,TotalSalary;   
     private boolean male;
-    public void setUserName(String id, String name){
-         this.userName=id+name;
+    public String getChucVu() {
+        return chucVu;
+    }
+
+    public void setChucVu(String chucVu) {
+        this.chucVu = chucVu;
+    }
+    public void setUserName( String name){
+         this.userName=name;
     }
     public String getUserName() {
         
         return userName;
     }
 
-    public int getTotalSalary() {
-        return TotalSalary;
-    }
+//    public int getTotalSalary() {
+//        return TotalSalary;
+//    }
  
 
     public String getId() {
         return id;
     }
-
-    public void setId(String id) {
-        this.id = id.trim();
+    public void setId(String id){
+        this.id=id;
     }
+//    public boolean setId(String id) {
+//       ReadWriteFile rd=new ReadWriteFile();    
+//       NhanVien a= new NhanVien();
+//       a.id=id.trim();
+//       for(NhanVien b : rd.ReadFromNhanVien()){
+//           if(b.id.equals(a.id)){             
+//               return false;
+//           }
+//       }
+//       this.id = id.trim();
+//       return true;
+//        
+//    }
 
     public String getName() {
         return name;
@@ -90,21 +110,21 @@ public class NhanVien {
        
     }
 
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary=salary;
-    }
-
-    public int getWorkday() {
-        return workday;
-    }
-
-    public void setWorkday(int workday) {
-         this.workday=workday;
-    }
+//    public int getSalary() {
+//        return salary;
+//    }
+//
+//    public void setSalary(int salary) {
+//        this.salary=salary;
+//    }
+//
+//    public int getWorkday() {
+//        return workday;
+//    }
+//
+//    public void setWorkday(int workday) {
+//         this.workday=workday;
+//    }
 
     public boolean isMale() {
         return male;
@@ -115,7 +135,7 @@ public class NhanVien {
     }
     public NhanVien(){       
     }
-    public NhanVien(String id, String name, String birthday, String address, String email, String phone, int salary, int workday,  boolean male,String userName,String password) {
+    public NhanVien(String id, String name, String birthday, String address, String email, String phone,String chucvu,boolean male,String userName,String password) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -124,18 +144,32 @@ public class NhanVien {
         this.password = password;
         this.birthday = birthday;
         this.phone = phone;
-        this.salary = salary;
-        this.workday = workday;
+//        this.salary = salary;
+//        this.workday = workday;
+        this.chucVu=chucvu;
         this.male = male;
-        this.TotalSalary=salary*workday;
+//        this.TotalSalary=salary*workday;
     }
 
     @Override
     public String toString() {
-            return id+";"+name+";"+birthday+";"+address+";"+email+";"+phone+";"+salary+";"+workday+";"+male+";"+(id+name).replaceAll("\\s","").toLowerCase()+";"+password+";"+salary*workday;
+            return id+";"+name+";"+birthday+";"+address+";"+email+";"+phone+";"+chucVu+";"+male+";"+userName+";"+password;
     }
-
-   
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final NhanVien other = (NhanVien) obj;
+        return Objects.equals(this.id, other.id);
+    }
+ 
     
    
 }
