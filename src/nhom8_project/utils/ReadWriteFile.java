@@ -57,7 +57,7 @@ public class ReadWriteFile {
     }
     public static void main(String[] args) {
             ReadWriteFile rwf= new ReadWriteFile();
-//        List<User> list = new ArrayList<>();
+      //        List<User> list = new ArrayList<>();
 //        list.add(new User("admin","12345678"));
 //        list.add(new User("nhanvien1","12345678"));
 //        list.add(new User("nhanvien2","12345678"));
