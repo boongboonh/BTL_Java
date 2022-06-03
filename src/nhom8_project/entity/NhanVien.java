@@ -33,8 +33,6 @@ public class NhanVien implements Serializable{
         if(described!=null&&!described.equals("")){
             this.described=described;
             check=true;
-        }else{
-            new loginView().showMessage("Lý do sa thải không được bỏ trống");
         }
         return check;
     }
@@ -172,16 +170,17 @@ public class NhanVien implements Serializable{
         }
         return check;
     }
-    public boolean setPassword(String pass){
-        boolean check=false;
-        Pattern p = Pattern.compile(".{6,}");
-        if(p.matcher(pass.trim()).find()){
-          this.password=pass.trim();
-          check=true;
-        }else{
-             new loginView().showMessage("Password phải lớn hơn 6 kí tự");  
-        }
-        return check;
+    public void setPassword(String pass){
+//        boolean check=false;
+//        Pattern p = Pattern.compile(".{6,}");
+//        if(p.matcher(pass.trim()).find()){
+//          this.password=pass.trim();
+//          check=true;
+//        }else{
+//             new loginView().showMessage("Password phải lớn hơn 6 kí tự");  
+//        }
+//        return check;
+        password=pass;
     }
     public String getPassword() {
         return password;

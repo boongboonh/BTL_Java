@@ -44,21 +44,6 @@ public class NhanVienList {
     public void add(NhanVien nv){
         list.add(nv);
     }
-//    public boolean update(NhanVien nv){
-//        NhanVien existedNV = FindById(nv.getId());
-//        boolean check=false;
-//        if(existedNV !=null){
-//            existedNV.setName(nv.getName());
-//            existedNV.setBirthday(nv.getBirthday());
-//            existedNV.setAddress(nv.getAddress());
-//            existedNV.setPhone(nv.getPhone());
-//            existedNV.setEmail(nv.getEmail());
-//            existedNV.setChucVu(nv.getChucVu());
-//            existedNV.setMale(nv.isMale());
-//            check=true;
-//        }
-//        return check;
-//    }
     public String Status(boolean status){
         if(status){
             return "Đang làm việc";
