@@ -224,7 +224,7 @@ public class loginView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_usernameActionPerformed
       public void showMessage(String message){
-        JOptionPane.showMessageDialog(this,message);
+        JOptionPane.showMessageDialog(this,message,"Thông báo",JOptionPane.ERROR_MESSAGE);
     }
      
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

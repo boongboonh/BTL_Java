@@ -34,7 +34,7 @@ public class NhanVien implements Serializable{
             this.described=described;
             check=true;
         }else{
-            new loginView().showMessage("Lý do sai thải không được bỏ trống");
+            new loginView().showMessage("Lý do sa thải không được bỏ trống");
         }
         return check;
     }

@@ -71,10 +71,23 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
 //        }
 //         tableNVM.setModel(new DefaultTableModel(nhanvien, Title));
 //    }
-    public void showMessage(String message){
-        JOptionPane.showMessageDialog(this,message);
+    //Hiển thị các bảng thông báo
+    public void showMessageError(String message){
+        JOptionPane.showMessageDialog(this,message,"Thông báo",JOptionPane.ERROR_MESSAGE);
     }
-       public void addNhanVien(){        
+    public void showMessageInf(String message){
+        JOptionPane.showMessageDialog(this, message,"Thông báo",JOptionPane.INFORMATION_MESSAGE);
+    }
+    public String showMessageInput(String message,String title){
+        String mess= JOptionPane.showInputDialog(this, message, title, JOptionPane.INFORMATION_MESSAGE);
+        return mess;
+    }
+    public int showMessageConfirm(String message,String title){
+        return JOptionPane.showConfirmDialog(this, message, title, JOptionPane.WARNING_MESSAGE);
+        
+    }
+    //
+    public void addNhanVien(){        
                while(true){
                     ArrayList<NhanVien> list = new ArrayList<NhanVien>();
                     NhanVien nv = new NhanVien();
@@ -100,13 +113,14 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
                     nv.setSex(rdNam.isSelected());
                     list.add(nv);
                     new ReadWriteFile().WriteToFile(list,"nhanvien.dat",true);
-                    JOptionPane.showMessageDialog(this,"Thêm thành công");
+                    showMessageInf("Thêm thành công");                   
                     initTable();
                     ClearNV();
                     break;
         }      
     }
-    public void EditNV(){    
+    public void EditNV(){   
+        if(showMessageConfirm("Bạn có chắc chắn muốn sửa", "Thông báo")==JOptionPane.YES_OPTION){                 
            nvlist = new NhanVienList();
            ArrayList<NhanVien> listread = nvlist.getList();
                while(true){                  
@@ -133,11 +147,12 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
                         listread.remove(index);
                         listread.add(index, nv);
                         new ReadWriteFile().WriteToFile(listread,"nhanvien.dat",false);
-                        showMessage("Sửa thành công");
+                        showMessageInf("Sửa thành công");
                         break;  
                     }
-                    showMessage("Mã nhân viên không tồn tại");
+                    showMessageError("Mã nhân viên không tồn tại");
                      break;
+                }
         }           
     }
     public void ClearNV(){      
@@ -171,13 +186,39 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
                 status=a.isStatus();
                 describ=a.getDescribed();                      
             }else{
-                showMessage("Không tìm thấy mã nhân viên "+id);
+                showMessageError("Không tìm thấy mã nhân viên "+id);
             }           
     }   
     public void Detail(){
-       nvdetail = new NhanVienDetailDialog(new Admin(), true,nameNVM.getText(), birthdayNVM.getText(),
-                rdNam.isSelected(),phoneNVM.getText() , emailNVM.getText(), addressNVM.getText(), status, describ);
+       nvdetail = new NhanVienDetailDialog(new Admin(), true,nameNVM.getText().trim(), birthdayNVM.getText().trim(),
+                rdNam.isSelected(),phoneNVM.getText().trim() , emailNVM.getText().trim(), addressNVM.getText().trim(), status, describ);
             nvdetail.setVisible(true);         
+    }
+    public void Dismissal(){    
+       int x=showMessageConfirm("Bạn chắc chắn muốn sa thải không", "Thông báo");
+       if(x==JOptionPane.YES_OPTION){
+           status=false;
+           describ=showMessageInput("Lý do sa thải", "Sa thải");                  
+           nvlist = new NhanVienList();
+           ArrayList<NhanVien> listread = nvlist.getList();
+               while(true){                  
+                    NhanVien nv = nvlist.FindById(idCheck);
+                    if(nv!=null){                                          
+                        nv.setStatus(status);
+                        if(!nv.setDescribed(describ)){
+                            break;
+                        }
+                        int index= listread.indexOf(nv);
+                        listread.remove(index);
+                        listread.add(index, nv);
+                        new ReadWriteFile().WriteToFile(listread,"nhanvien.dat",false);
+                        showMessageInf("Sa thải thành công");
+                        break;  
+                    }
+                    showMessageError("Mã nhân viên không tồn tại");
+                     break;
+        }
+       }
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -319,6 +360,11 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
 
         btnSathai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/Actions-edit-delete-icon-16.png"))); // NOI18N
         btnSathai.setText("Sa thải");
+        btnSathai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSathaiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -516,7 +562,7 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
             btnSathai.setEnabled(false);
             txtSearchID.setText("");
         } catch (Exception e) {
-            showMessage("Lỗi Clear");
+            showMessageError("Lỗi Clear");
         }      
     }//GEN-LAST:event_btnClearNVMActionPerformed
 
@@ -528,7 +574,7 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
             btnDetailNVM.setEnabled(true);
             btnSathai.setEnabled(true);   
         } catch (Exception e) {
-            showMessage("Lỗi tìm kiếm");
+            showMessageError("Lỗi tìm kiếm");
         }                   
     }//GEN-LAST:event_btnSearchActionPerformed
 
@@ -536,7 +582,7 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
         try {
            Detail();
         } catch (Exception e) {
-            showMessage("Lỗi Detail");
+            showMessageError("Chi tiết bị lỗi");
         }
         
     }//GEN-LAST:event_btnDetailNVMActionPerformed
@@ -545,7 +591,7 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
         try {
             addNhanVien();
         } catch (Exception e) {
-            showMessage("Lỗi thêm ");
+            showMessageError("Thêm bị lỗi ");
         }     
     }//GEN-LAST:event_btnAddNVMActionPerformed
 
@@ -554,10 +600,20 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
             EditNV();
             initTable();
         } catch (Exception e) {
-            showMessage("Lỗi Edit");
+            showMessageError("Edit bị lỗi");
         }      
         
     }//GEN-LAST:event_btnEditNVMActionPerformed
+
+    private void btnSathaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSathaiActionPerformed
+        try {
+            Dismissal();
+            initTable();
+        } catch (Exception e) {
+            showMessageError("Sa thải bị lỗi");
+        }
+     
+    }//GEN-LAST:event_btnSathaiActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
