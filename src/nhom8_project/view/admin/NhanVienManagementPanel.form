@@ -225,9 +225,6 @@
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Nam"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdNamActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rdNu">
           <Properties>
@@ -258,29 +255,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="nameNVM">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameNVMActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="birthdayNVM">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="birthdayNVMActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="addressNVM">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addressNVMActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="phoneNVM">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="phoneNVMActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="emailNVM">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailNVMActionPerformed"/>
-          </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel2">
 
@@ -350,9 +332,6 @@
               </StringArray>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbcvActionPerformed"/>
-          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -442,6 +421,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnSathai">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/nhom8_project/icon/Actions-edit-delete-icon-16.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Sa th&#x1ea3;i"/>
               </Properties>
             </Component>

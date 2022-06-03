@@ -1,3 +1,2 @@
-2022nv1;A;11/10/2001;null;e@fmai.c;01;Bán hàng;Nam;2022nv1;1234567
-2022nv2;null;01/01/0001;null;null@e.du;0001;Bảo vệ;Nam;2022nv2;1234567
-2022nv3;a;11/10/2011;a;1@e.e;01;Bảo trì hệ thống;Nữ;null;null
+2022nv1;a;11/11/1111;1;1@e.u;01;Bán hàng;Nam;2022nv1;1234567;false;null
+2022nv2;b;11/11/1111;1;1@e.v;01;Bán hàng;Nam;2022nv2;1234567;true;null

@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import nhom8_project.controller.NhanVienController;
 import nhom8_project.entity.NhanVien;
 import nhom8_project.entity.NhanVienList;
 import nhom8_project.utils.DateFormat;
@@ -22,10 +21,11 @@ import nhom8_project.utils.ReadWriteFile;
  */
 public final class NhanVienManagementPanel extends javax.swing.JPanel {
     private DefaultTableModel tbModel=null;
-    private Object [] Title= new Object[]{"Mã nhân viên","Tên nhân viên","Ngày sinh","Địa chỉ","Chức vụ","Giới tính","Email","Số điện thoại"};
+    private Object [] Title= new Object[]{"Mã nhân viên","Tên nhân viên","Ngày sinh","Địa chỉ","Chức vụ","Giới tính","Email","Số điện thoại","Tình trạng"};
     private NhanVienList nvlist;
-    
-    private String idCheck;
+    private NhanVienDetailDialog nvdetail;
+    private String idCheck,describ;
+    private boolean status;
     /**
      * Creates new form NhanVienManagementPanel
      */
@@ -74,27 +74,26 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
     public void showMessage(String message){
         JOptionPane.showMessageDialog(this,message);
     }
-       public void addNhanVien(){
-         
+       public void addNhanVien(){        
                while(true){
                     ArrayList<NhanVien> list = new ArrayList<NhanVien>();
                     NhanVien nv = new NhanVien();
                     int size=new ReadWriteFile().ReadFromNhanVien().size();       
                     String id=Integer.toString(new DateFormat().Year(LocalDate.now()))+"nv"+Integer.toString(++size);
                     nv.setId(id);
-                    if(!nv.setName(nameNVM.getText())){
+                    if(!nv.setName(nameNVM.getText().trim())){
                         break;
                     }
-                    if(!nv.setBirthday(birthdayNVM.getText())){
+                    if(!nv.setBirthday(birthdayNVM.getText().trim())){
                         break;
                     }
-                    if(!nv.setAddress(addressNVM.getText())){
+                    if(!nv.setAddress(addressNVM.getText().trim())){
                         break;
                     }
-                    if(!nv.setPhone(phoneNVM.getText())){
+                    if(!nv.setPhone(phoneNVM.getText().trim())){
                         break;
                     }
-                    if(!nv.setEmail(emailNVM.getText())){
+                    if(!nv.setEmail(emailNVM.getText().trim())){
                         break;
                     }     
                     nv.setChucVu(cbcv.getSelectedIndex(),id);                                     
@@ -105,30 +104,27 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
                     initTable();
                     ClearNV();
                     break;
-        }
-        
+        }      
     }
-    public void EditNV(){
-       try {
+    public void EditNV(){    
            nvlist = new NhanVienList();
            ArrayList<NhanVien> listread = nvlist.getList();
                while(true){                  
                     NhanVien nv = nvlist.FindById(idCheck);
-                    if(nv!=null){
-                        nv.setId(idCheck);                   
-                        if(!nv.setName(nameNVM.getText())){
+                    if(nv!=null){                                          
+                        if(!nv.setName(nameNVM.getText().trim())){
                             break;
                         }
-                        if(!nv.setBirthday(birthdayNVM.getText())){
+                        if(!nv.setBirthday(birthdayNVM.getText().trim())){
                             break;
                         }
-                        if(!nv.setAddress(addressNVM.getText())){
+                        if(!nv.setAddress(addressNVM.getText().trim())){
                             break;
                         }
-                        if(!nv.setPhone(phoneNVM.getText())){
+                        if(!nv.setPhone(phoneNVM.getText().trim())){
                             break;
                         }
-                        if(!nv.setEmail(emailNVM.getText())){
+                        if(!nv.setEmail(emailNVM.getText().trim())){
                             break;
                         }     
                         nv.setChucVu(cbcv.getSelectedIndex(),idCheck);                                     
@@ -142,29 +138,16 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
                     }
                     showMessage("Mã nhân viên không tồn tại");
                      break;
-        }
-           } catch (Exception e) {
-            e.printStackTrace();
-            showMessage("Lỗi "+ e.getMessage());
-           }  
+        }           
     }
-    public void ClearNV(){
-        try {
+    public void ClearNV(){      
         nameNVM.setText("");
         birthdayNVM.setText("");
         addressNVM.setText("");
         phoneNVM.setText("");
-        emailNVM.setText("");
-        btnAddNVM.setEnabled(true);
-        btnEditNVM.setEnabled(false);
-        btnDetailNVM.setEnabled(false);
-        } catch (Exception e) {
-            
-        }
-       
+        emailNVM.setText("");      
     }
-    public void searchNV(String id){
-        try {           
+    public void searchNV(String id){             
         NhanVien a = nvlist.FindById(id);       
             if(a!=null){
                 idCheck=id;
@@ -185,18 +168,17 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
                 }else if(a.getSex().equals("Nữ")){
                     rdNu.setSelected(true);
                 }
-                btnAddNVM.setEnabled(false);
-                btnEditNVM.setEnabled(true);
-                btnDetailNVM.setEnabled(true);
-                btnSathai.setEnabled(true);            
+                status=a.isStatus();
+                describ=a.getDescribed();                      
             }else{
                 showMessage("Không tìm thấy mã nhân viên "+id);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            showMessage("Lỗi "+ e.getMessage());
-        }     
+            }           
     }   
+    public void Detail(){
+       nvdetail = new NhanVienDetailDialog(new Admin(), true,nameNVM.getText(), birthdayNVM.getText(),
+                rdNam.isSelected(),phoneNVM.getText() , emailNVM.getText(), addressNVM.getText(), status, describ);
+            nvdetail.setVisible(true);         
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -256,11 +238,6 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
         buttonGroup1.add(rdNam);
         rdNam.setSelected(true);
         rdNam.setText("Nam");
-        rdNam.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdNamActionPerformed(evt);
-            }
-        });
 
         buttonGroup1.add(rdNu);
         rdNu.setText("Nữ");
@@ -272,36 +249,6 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
         jLabel10.setText("Giới tính");
 
         jLabel4.setText("Ngày sinh");
-
-        nameNVM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameNVMActionPerformed(evt);
-            }
-        });
-
-        birthdayNVM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                birthdayNVMActionPerformed(evt);
-            }
-        });
-
-        addressNVM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addressNVMActionPerformed(evt);
-            }
-        });
-
-        phoneNVM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phoneNVMActionPerformed(evt);
-            }
-        });
-
-        emailNVM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailNVMActionPerformed(evt);
-            }
-        });
 
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/Person-Male-Light-icon-48.png"))); // NOI18N
@@ -337,11 +284,6 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
         jLabel2.setText("Chức vụ");
 
         cbcv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bán hàng", "Bảo trì hệ thống", "Bảo vệ" }));
-        cbcv.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbcvActionPerformed(evt);
-            }
-        });
 
         btnEditNVM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/Actions-document-edit-icon-16.png"))); // NOI18N
         btnEditNVM.setText("Sửa");
@@ -375,6 +317,7 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
             }
         });
 
+        btnSathai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/Actions-edit-delete-icon-16.png"))); // NOI18N
         btnSathai.setText("Sa thải");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -564,56 +507,57 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void birthdayNVMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_birthdayNVMActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_birthdayNVMActionPerformed
-
     private void btnClearNVMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearNVMActionPerformed
-      ClearNV();
+        try {
+            ClearNV();
+            btnAddNVM.setEnabled(true);
+            btnEditNVM.setEnabled(false);
+            btnDetailNVM.setEnabled(false);
+            btnSathai.setEnabled(false);
+            txtSearchID.setText("");
+        } catch (Exception e) {
+            showMessage("Lỗi Clear");
+        }      
     }//GEN-LAST:event_btnClearNVMActionPerformed
 
-    private void addressNVMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressNVMActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addressNVMActionPerformed
-
-    private void phoneNVMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNVMActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_phoneNVMActionPerformed
-
-    private void emailNVMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailNVMActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailNVMActionPerformed
-
-    private void rdNamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdNamActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rdNamActionPerformed
-
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        searchNV(txtSearchID.getText());      
-        
+        try {
+            searchNV(txtSearchID.getText());
+            btnAddNVM.setEnabled(false);
+            btnEditNVM.setEnabled(true);
+            btnDetailNVM.setEnabled(true);
+            btnSathai.setEnabled(true);   
+        } catch (Exception e) {
+            showMessage("Lỗi tìm kiếm");
+        }                   
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnDetailNVMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailNVMActionPerformed
-       
-        new NhanVienDetailDialog(new Admin(), true).setVisible(true);
+        try {
+           Detail();
+        } catch (Exception e) {
+            showMessage("Lỗi Detail");
+        }
+        
     }//GEN-LAST:event_btnDetailNVMActionPerformed
 
     private void btnAddNVMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNVMActionPerformed
-     addNhanVien();
+        try {
+            addNhanVien();
+        } catch (Exception e) {
+            showMessage("Lỗi thêm ");
+        }     
     }//GEN-LAST:event_btnAddNVMActionPerformed
 
     private void btnEditNVMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditNVMActionPerformed
-        EditNV();
-        initTable();
+        try {
+            EditNV();
+            initTable();
+        } catch (Exception e) {
+            showMessage("Lỗi Edit");
+        }      
+        
     }//GEN-LAST:event_btnEditNVMActionPerformed
-
-    private void nameNVMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameNVMActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameNVMActionPerformed
-
-    private void cbcvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbcvActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbcvActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

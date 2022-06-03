@@ -53,7 +53,7 @@ public class ReadWriteFile {
                 }
                 System.out.println(line);
                 String txt[]=line.split(";");
-                list.add( new NhanVien(txt[0],txt[1],txt[2],txt[3],txt[4],txt[5],txt[6],txt[7],txt[8],txt[9]));
+                list.add( new NhanVien(txt[0],txt[1],txt[2],txt[3],txt[4],txt[5],txt[6],txt[7],txt[8],txt[9],Boolean.parseBoolean(txt[10]),txt[11]));
             }  
             br.close();
             fr.close();
@@ -70,16 +70,6 @@ public class ReadWriteFile {
             b.setId("2022nv1");
             list.add(b);
            // rwf.WriteToFile(list, "nhanvien.dat",true);
-           for(NhanVien a : rwf.ReadFromNhanVien()){
-               if(a.getId().equals(b.getId())){
-                   System.out.println("ID ton tai");
-                    
-                   
-                   break;
-               }else{
-                   System.out.println("ID lkong");
-               }
-           } 
             int index = rwf.ReadFromNhanVien().indexOf(b);
                 //    rwf.ReadFromNhanVien().remove(1);
                      System.out.println(index);

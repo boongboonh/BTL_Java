@@ -59,11 +59,11 @@ public class NhanVienList {
 //        }
 //        return check;
 //    }
-    public String Male(boolean male){
-        if(male){
-            return "Nam";
+    public String Status(boolean status){
+        if(status){
+            return "Đang làm việc";
         }else{
-            return "Nữ";
+            return "Đã sa thải";
         }
     }
     public void setModel(DefaultTableModel tbModel){
@@ -71,7 +71,7 @@ public class NhanVienList {
         for(NhanVien nv:list){
             Object[] row = new Object[]{
                 nv.getId(),nv.getName(),nv.getBirthday(),nv.getAddress(),nv.getChucVu(),nv.getSex()
-                    ,nv.getEmail(),nv.getPhone()                  
+                    ,nv.getEmail(),nv.getPhone(),Status(nv.isStatus())
             };
         tbModel.addRow(row);
             

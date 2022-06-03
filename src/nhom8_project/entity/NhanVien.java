@@ -15,8 +15,37 @@ import nhom8_project.view.loginView;
  * @author Admin
  */
 public class NhanVien implements Serializable{
-    private String id,name,address,email,userName,password,birthday,phone,chucVu,sex;
+    private String id,name,address,email,userName,password,birthday,phone,chucVu,sex,described;
+    private boolean status=true;
 
+
+    // bắt  lỗi regex
+       Pattern rgname = Pattern.compile("^[a-zA-z ]+"); 
+       Pattern rgemail = Pattern.compile("^\\w+@\\w+(\\.\\w+){1,2}$");
+       Pattern rgphone = Pattern.compile("^0\\d+{9}$");
+       
+        public String getDescribed() {
+        return described;
+    }
+
+    public boolean setDescribed(String described) {
+        boolean check=false;
+        if(described!=null&&!described.equals("")){
+            this.described=described;
+            check=true;
+        }else{
+            new loginView().showMessage("Lý do sai thải không được bỏ trống");
+        }
+        return check;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
     public String getSex() {
         return sex;
     }
@@ -28,14 +57,9 @@ public class NhanVien implements Serializable{
            this.sex="Nữ";      
         }
     }
-    // bắt  lỗi regex
-       Pattern rgname = Pattern.compile("^[a-zA-z ]+"); 
-       Pattern rgemail = Pattern.compile("^\\w+@\\w+(\\.\\w+){1,2}$");
-       Pattern rgphone = Pattern.compile("^0\\d+{9}");
     public String getChucVu() {
         return chucVu;
     }
-    
     public void setChucVu(int chucvu,String id) {
         switch (chucvu) {
                 case 0:
@@ -225,7 +249,7 @@ public class NhanVien implements Serializable{
   
     public NhanVien(){       
     }
-    public NhanVien(String id, String name, String birthday, String address, String email, String phone,String chucvu,String sex,String userName,String password) {
+    public NhanVien(String id, String name, String birthday, String address, String email, String phone,String chucvu,String sex,String userName,String password,boolean status,String describ) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -234,16 +258,15 @@ public class NhanVien implements Serializable{
         this.password = password;
         this.birthday = birthday;
         this.phone = phone;
-//        this.salary = salary;
-//        this.workday = workday;
         this.chucVu=chucvu;
         this.sex = sex;
-//        this.TotalSalary=salary*workday;
+        this.status=status;
+        described=describ;
     }
 
     @Override
     public String toString() {
-            return id+";"+name+";"+birthday+";"+address+";"+email+";"+phone+";"+chucVu+";"+sex+";"+userName+";"+password;
+            return id+";"+name+";"+birthday+";"+address+";"+email+";"+phone+";"+chucVu+";"+sex+";"+userName+";"+password+";"+status+";"+described;
     }
     @Override
     public boolean equals(Object obj) {
