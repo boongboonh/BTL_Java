@@ -5,6 +5,7 @@
 package nhom8_project.view.admin;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 //import nhom8_project.view.admin.NhanVienManagementPanel;
 import nhom8_project.view.loginView;
 
@@ -13,8 +14,10 @@ import nhom8_project.view.loginView;
  * @author Admin
  */
 public class Admin extends javax.swing.JFrame {
+
     private NhanVienManagementPanel nvmp;
     private HangHoaManagementPanel hhmp;
+
     /**
      * Creates new form Admin
      */
@@ -24,37 +27,43 @@ public class Admin extends javax.swing.JFrame {
         //setLocationRelativeTo(null);
         //Hộp thoại full màn hình
         setExtendedState(getExtendedState() | MAXIMIZED_BOTH);
-        
+
     }
 
-    public void addTabbedPaneNV(){
-        if(nvmp ==null){
-        nvmp = new NhanVienManagementPanel();
-        // Lấy icon 
-        ImageIcon icon = new ImageIcon(getClass()
-                .getResource("/nhom8_project/icon/Person-Male-Light-icon-16.png"));
-        // Add jpanel NhanVienManagementPanel vào tabbedpane
-        tabpaneAdmin.addTab("Quản Lý Nhân Viên", icon, nvmp,"Quản lý nhân viên");
+    public void addTabbedPaneNV() {
+        if (nvmp == null) {
+            nvmp = new NhanVienManagementPanel();
+            // Lấy icon 
+            ImageIcon icon = new ImageIcon(getClass()
+                    .getResource("/nhom8_project/icon/Person-Male-Light-icon-16.png"));
+            // Add jpanel NhanVienManagementPanel vào tabbedpane
+            tabpaneAdmin.addTab("Quản Lý Nhân Viên", icon, nvmp, "Quản lý nhân viên");
         }
         tabpaneAdmin.setSelectedComponent(nvmp);
     }
-    public void addTabbedPaneHH(){
-        if(hhmp ==null){
+
+    public void addTabbedPaneHH() {
+        if (hhmp == null) {
             hhmp = new HangHoaManagementPanel();
-           // ImageIcon icon= new ImageIcon("Nhom8_project\\src\\nhom8_project\\icon\\gpa-icon.png");
+            // ImageIcon icon= new ImageIcon("Nhom8_project\\src\\nhom8_project\\icon\\gpa-icon.png");
             ImageIcon icon = new ImageIcon(getClass().getResource("/nhom8_project/icon/gpa-icon.png"));
 
-          tabpaneAdmin.addTab("Quản Lý Hàng Hoá", icon, hhmp);
+            tabpaneAdmin.addTab("Quản Lý Hàng Hoá", icon, hhmp);
         }
         tabpaneAdmin.setSelectedComponent(hhmp);
     }
-    public void Logout(){
-        //Đóng hộp thoại
-        this.dispose();
-        //Mở hộp thoại login
-        new loginView().setVisible(true);
+
+    public void Logout() {
+
+        if (JOptionPane.showConfirmDialog(null, "Bạn có muốn đăng xuất tài khoản không?", "Thông báo", JOptionPane.YES_NO_OPTION) == 0) {
+            //Đóng hộp thoại
+            this.dispose();
+            //Mở hộp thoại login
+            new loginView().setVisible(true);
+        }
+
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,12 +74,12 @@ public class Admin extends javax.swing.JFrame {
     private void initComponents() {
 
         jToolBar1 = new javax.swing.JToolBar();
-        ToolbarBtnLogout = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JToolBar.Separator();
         ToolbarBtnQLNV = new javax.swing.JButton();
         ToolbarBtnQLHH = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
         ToolbarBtnAbout = new javax.swing.JButton();
+        ToolbarBtnLogout = new javax.swing.JButton();
         tabpaneAdmin = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -88,18 +97,6 @@ public class Admin extends javax.swing.JFrame {
         setTitle("Admin");
 
         jToolBar1.setRollover(true);
-
-        ToolbarBtnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/Login-icon-16.png"))); // NOI18N
-        ToolbarBtnLogout.setText("Đăng xuất");
-        ToolbarBtnLogout.setFocusable(false);
-        ToolbarBtnLogout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        ToolbarBtnLogout.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        ToolbarBtnLogout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ToolbarBtnLogoutActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(ToolbarBtnLogout);
         jToolBar1.add(jSeparator4);
 
         ToolbarBtnQLNV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/Person-Male-Light-icon-16.png"))); // NOI18N
@@ -138,6 +135,18 @@ public class Admin extends javax.swing.JFrame {
             }
         });
         jToolBar1.add(ToolbarBtnAbout);
+
+        ToolbarBtnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/Login-icon-16.png"))); // NOI18N
+        ToolbarBtnLogout.setText("Đăng xuất");
+        ToolbarBtnLogout.setFocusable(false);
+        ToolbarBtnLogout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ToolbarBtnLogout.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        ToolbarBtnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ToolbarBtnLogoutActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(ToolbarBtnLogout);
 
         jMenu1.setText("Hệ thống");
 
@@ -236,34 +245,34 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_menuQLHHActionPerformed
 
     private void ToolbarBtnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ToolbarBtnLogoutActionPerformed
-         Logout();
+        Logout();
     }//GEN-LAST:event_ToolbarBtnLogoutActionPerformed
 
     private void menuManagementNhanvienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuManagementNhanvienActionPerformed
-     addTabbedPaneNV();
-        
+        addTabbedPaneNV();
+
     }//GEN-LAST:event_menuManagementNhanvienActionPerformed
 
     private void ToolbarBtnQLNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ToolbarBtnQLNVActionPerformed
-       addTabbedPaneNV();
+        addTabbedPaneNV();
     }//GEN-LAST:event_ToolbarBtnQLNVActionPerformed
 
     private void menuLogoutAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLogoutAdminActionPerformed
-       Logout();
+        Logout();
     }//GEN-LAST:event_menuLogoutAdminActionPerformed
 
     private void ToolbarBtnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ToolbarBtnAboutActionPerformed
-        new AboutProjectDialog(this,true).setVisible(true);
+        new AboutProjectDialog(this, true).setVisible(true);
     }//GEN-LAST:event_ToolbarBtnAboutActionPerformed
 
     private void menuAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAboutActionPerformed
         new AboutProjectDialog(this, true).setVisible(true);
-        
-       
+
+
     }//GEN-LAST:event_menuAboutActionPerformed
 
     private void ToolbarBtnQLHHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ToolbarBtnQLHHActionPerformed
-     addTabbedPaneHH();
+        addTabbedPaneHH();
     }//GEN-LAST:event_ToolbarBtnQLHHActionPerformed
 
     /**

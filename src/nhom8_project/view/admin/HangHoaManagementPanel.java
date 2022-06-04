@@ -82,7 +82,7 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
 
         jLabel13.setText("Hạn sử dụng");
 
-        jLabel14.setText("Xuất xứ");
+        jLabel14.setText("Nhà sản xuất");
 
         jLabel15.setText("Thời gian nhập");
 
@@ -334,7 +334,7 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 263, Short.MAX_VALUE)))
+                        .addGap(0, 242, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()

@@ -3,7 +3,7 @@ package nhom8_project.entity;
 
 
 public class NhanVien {
-    public int nhanVienID;      //PK
+    public String nhanVienID;      //PK
     public String accountName;
     public String accountPass;
     public String tenNhanVien;
@@ -15,7 +15,7 @@ public class NhanVien {
     public String SDT;
     public String email;
 
-    public int getNhanVienID() {
+    public String getNhanVienID() {
         return nhanVienID;
     }
 
@@ -51,7 +51,7 @@ public class NhanVien {
         return email;
     }
 
-    public void setNhanVienID(int nhanVienID) {
+    public void setNhanVienID(String nhanVienID) {
         this.nhanVienID = nhanVienID;
     }
 
@@ -92,7 +92,7 @@ public class NhanVien {
     public NhanVien(){
         
     }
-    public NhanVien(int nhanVienID, String tenNhanVien, String ngaySinh, String gioiTinh, long luong, int soNgayLam, String diaChi, String SDT, String email) {
+    public NhanVien(String nhanVienID, String tenNhanVien, String ngaySinh, String gioiTinh, long luong, int soNgayLam, String diaChi, String SDT, String email) {
         this.nhanVienID = nhanVienID;
         this.tenNhanVien = tenNhanVien;
         this.ngaySinh = ngaySinh;

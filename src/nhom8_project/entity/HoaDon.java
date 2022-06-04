@@ -1,73 +1,78 @@
 
 package nhom8_project.entity;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 
 public class HoaDon {
-    public int hoaDonID;    //PK
-    public long tongTien;
+    
+    
+    public String hoaDonID;    //PK
+    public int soLuong;
     public String thoiGian;
-    public int khachHangID; //FK
-    public int nhanVienID;  //FK
-    public int hangHoaID;   //FK
+    public String khachHangID; //FK
+    public String nhanVienID;  //FK
+    public String hangHoaID;   //FK
 
-    public int getHoaDonID() {
+    public String getHoaDonID() {
         return hoaDonID;
     }
 
-    public long getTongTien() {
-        return tongTien;
+    public int getSoLuong() {
+        return soLuong;
     }
 
     public String getThoiGian() {
         return thoiGian;
     }
 
-    public int getKhachHangID() {
+    public String getKhachHangID() {
         return khachHangID;
     }
 
-    public int getNhanVienID() {
+    public String getNhanVienID() {
         return nhanVienID;
     }
 
-    public int getHangHoaID() {
+    public String getHangHoaID() {
         return hangHoaID;
     }
 
-    public void setHoaDonID(int hoaDonID) {
+    public void setHoaDonID(String hoaDonID) {
         this.hoaDonID = hoaDonID;
     }
 
-    public void setTongTien(long tongTien) {
-        this.tongTien = tongTien;
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
     }
 
     public void setThoiGian(String thoiGian) {
         this.thoiGian = thoiGian;
     }
 
-    public void setKhachHangID(int khachHangID) {
+    public void setKhachHangID(String khachHangID) {
         this.khachHangID = khachHangID;
     }
 
-    public void setNhanVienID(int nhanVienID) {
+    public void setNhanVienID(String nhanVienID) {
         this.nhanVienID = nhanVienID;
     }
 
-    public void setHangHoaID(int hangHoaID) {
+    public void setHangHoaID(String hangHoaID) {
         this.hangHoaID = hangHoaID;
     }
-
+    
     public HoaDon(){
         
     }
-    public HoaDon(int hoaDonID, long tongTien, String thoiGian, int khachHangID, int nhanVienID, int hangHoaID) {
+
+    public HoaDon(String hoaDonID, int soLuong, String thoiGian, String khachHangID, String nhanVienID, String hangHoaID) {
         this.hoaDonID = hoaDonID;
-        this.tongTien = tongTien;
+        this.soLuong = soLuong;
         this.thoiGian = thoiGian;
         this.khachHangID = khachHangID;
         this.nhanVienID = nhanVienID;
         this.hangHoaID = hangHoaID;
     }
-    
+  
 }

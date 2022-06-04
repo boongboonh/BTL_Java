@@ -3,19 +3,26 @@ package nhom8_project.entity;
 
 
 public class HangHoa {
-    public int hangHoaID;
+    public String hangHoaID;
     public String tenHang;
+    public String donViTinh;
     public int soLuongCon;
     public int soLuongBan;
     public String HSD;
     public String NSX;
-    public String thoiGianNhap;
-    public float giaNhap;
-    public float giaBan;
-    public int loaiHangID;
-    public String nhaSX;
+    public int giaBan;
+    public String loaiHang;
+    public String hoaDonNhapID;
 
-    public int getHangHoaID() {
+    public void setDonViTinh(String donViTinh) {
+        this.donViTinh = donViTinh;
+    }
+
+    public String getDonViTinh() {
+        return donViTinh;
+    }
+
+    public String getHangHoaID() {
         return hangHoaID;
     }
 
@@ -39,31 +46,19 @@ public class HangHoa {
         return NSX;
     }
 
-    public String getThoiGianNhap() {
-        return thoiGianNhap;
-    }
-
-    public float getGiaNhap() {
-        return giaNhap;
-    }
-
-    public float getGiaBan() {
+    public int getGiaBan() {
         return giaBan;
     }
 
-    public int getLoaiHangID() {
-        return loaiHangID;
+    public String getLoaiHang() {
+        return loaiHang;
     }
 
-    public String getNhaSX() {
-        return nhaSX;
+    public String getHoaDonNhapID() {
+        return hoaDonNhapID;
     }
 
-    public void setNhaSX(String nhaSX) {
-        this.nhaSX = nhaSX;
-    }
-
-    public void setHangHoaID(int hangHoaID) {
+    public void setHangHoaID(String hangHoaID) {
         this.hangHoaID = hangHoaID;
     }
 
@@ -87,38 +82,38 @@ public class HangHoa {
         this.NSX = NSX;
     }
 
-    public void setThoiGianNhap(String thoiGianNhap) {
-        this.thoiGianNhap = thoiGianNhap;
-    }
-
-    public void setGiaNhap(float giaNhap) {
-        this.giaNhap = giaNhap;
-    }
-
-    public void setGiaBan(float giaBan) {
+    public void setGiaBan(int giaBan) {
         this.giaBan = giaBan;
     }
 
-    public void setLoaiHangID(int loaiHangID) {
-        this.loaiHangID = loaiHangID;
+    public void setLoaiHang(String loaiHang) {
+        this.loaiHang = loaiHang;
     }
 
+    public void setHoaDonNhapID(String hoaDonNhapID) {
+        this.hoaDonNhapID = hoaDonNhapID;
+    }
+
+    
     public HangHoa(){
         
     }
 
-    public HangHoa(int hangHoaID, String tenHang, int soLuongCon, int soLuongBan, String HSD, String NSX, String thoiGianNhap, float giaNhap, float giaBan, int loaiHangID, String nhaSX) {
+    public HangHoa(String hangHoaID, String tenHang, String donViTinh, int soLuongCon, int soLuongBan, String HSD, String NSX, int giaBan, String loaiHang, String hoaDonNhapID) {
         this.hangHoaID = hangHoaID;
         this.tenHang = tenHang;
+        this.donViTinh = donViTinh;
         this.soLuongCon = soLuongCon;
         this.soLuongBan = soLuongBan;
         this.HSD = HSD;
         this.NSX = NSX;
-        this.thoiGianNhap = thoiGianNhap;
-        this.giaNhap = giaNhap;
         this.giaBan = giaBan;
-        this.loaiHangID = loaiHangID;
-        this.nhaSX = nhaSX;
+        this.loaiHang = loaiHang;
+        this.hoaDonNhapID = hoaDonNhapID;
     }
+
+   
+
+    
     
 }

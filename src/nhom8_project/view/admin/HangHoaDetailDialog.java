@@ -65,7 +65,7 @@ public class HangHoaDetailDialog extends javax.swing.JDialog {
 
         jLabel3.setText("Tên hàng hoá");
 
-        jLabel9.setText("Xuất xứ");
+        jLabel9.setText("Nhà sản xuất");
 
         jLabel10.setText("Số lượng");
 
