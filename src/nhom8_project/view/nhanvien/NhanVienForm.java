@@ -4,20 +4,71 @@
  */
 package nhom8_project.view.nhanvien;
 
-import java.awt.LayoutManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.SwingUtilities;
 import nhom8_project.view.loginView;
 
 public class NhanVienForm extends javax.swing.JFrame {
+
+    public static String MANHANVIEN = "";
 
     public NhanVienForm() {
         initComponents();
         setLocationRelativeTo(null);
         setExtendedState(getExtendedState() | MAXIMIZED_BOTH);
+        manHinhChinh();
+        closeTab();
+    }
+
+    public void manHinhChinh() {
+        String title = "Tạo hoá đơn";
+
+        if (checkTab(title) == true) {//true không trùng -> tạo tab mới 
+            PhieuBanHang a = new PhieuBanHang();
+            bangNoiDung.addTab(title, a.getContentPane());
+
+        }
+    }
+
+    public void closeTab() {
+        bangNoiDung.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (SwingUtilities.isRightMouseButton(e)) {
+                    int index = bangNoiDung.getSelectedIndex();
+                    if (bangNoiDung.getTabCount()>1) {
+                        if (JOptionPane.showConfirmDialog(null, "Bạn có muốn tắt giao diện này không?", "Thông báo", JOptionPane.YES_NO_OPTION) == 0) {
+                            bangNoiDung.remove(index);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -36,6 +87,7 @@ public class NhanVienForm extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         menuLogout = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -50,13 +102,17 @@ public class NhanVienForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         conten.setLayout(new java.awt.BorderLayout());
+
+        bangNoiDung.setAutoscrolls(true);
+        bangNoiDung.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         conten.add(bangNoiDung, java.awt.BorderLayout.CENTER);
 
-        jMenuBar1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuBar1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jMenuBar1.setPreferredSize(new java.awt.Dimension(212, 40));
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/Home-icon-16.png"))); // NOI18N
         jMenu1.setText("Bán hàng");
+        jMenu1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu1MouseClicked(evt);
@@ -66,7 +122,9 @@ public class NhanVienForm extends javax.swing.JFrame {
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon2/Box.png"))); // NOI18N
         jMenu2.setText("Hàng hoá");
+        jMenu2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
+        jMenuItem1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/new-icon-16.png"))); // NOI18N
         jMenuItem1.setText("Xem danh sách hàng");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -76,6 +134,7 @@ public class NhanVienForm extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem1);
 
+        jMenuItem3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon3/Calendar_16x16.png"))); // NOI18N
         jMenuItem3.setText("Kiểm soát hạn sử dụng");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -88,10 +147,12 @@ public class NhanVienForm extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/Person-Male-Light-icon-16.png"))); // NOI18N
-        jMenu3.setText("khách hàng");
+        jMenu3.setText("Khách hàng");
+        jMenu3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_K, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/Person-Male-Light-icon-16.png"))); // NOI18N
+        jMenuItem4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/Save-icon.png"))); // NOI18N
         jMenuItem4.setText("Thêm khách hàng");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,11 +161,23 @@ public class NhanVienForm extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem4);
 
+        jMenuItem2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/Person-Male-Light-icon-16.png"))); // NOI18N
+        jMenuItem2.setText("Xem khách hàng");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem2);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/logout-icon-16.png"))); // NOI18N
         jMenu4.setText("Đăng xuất");
+        jMenu4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
+        menuLogout.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         menuLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/logout-icon-16.png"))); // NOI18N
         menuLogout.setText("Đăng xuất");
         menuLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -118,8 +191,10 @@ public class NhanVienForm extends javax.swing.JFrame {
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/Button-Close-icon-16.png"))); // NOI18N
         jMenu5.setText("Thoát");
+        jMenu5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         exitMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        exitMenu.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         exitMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/Button-Close-icon-16.png"))); // NOI18N
         exitMenu.setText("Thoát");
         exitMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -155,6 +230,8 @@ public class NhanVienForm extends javax.swing.JFrame {
 
     private void menuLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLogoutActionPerformed
         if (JOptionPane.showConfirmDialog(null, "Bạn có muốn đăng xuất tài khoản không?", "Thông báo", JOptionPane.YES_NO_OPTION) == 0) {
+            //cho mã nhân viên về rỗng
+
             //Đóng hộp thoại
             this.dispose();
             //Mở hộp thoại login
@@ -164,6 +241,8 @@ public class NhanVienForm extends javax.swing.JFrame {
 
     private void exitMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuActionPerformed
         if (JOptionPane.showConfirmDialog(null, "Bạn có muốn thoát chương trình không?", "Thông báo", JOptionPane.YES_NO_OPTION) == 0) {
+            //cho mã nhân viên về rỗng
+
             //Đóng hộp thoại
             this.dispose();
             System.exit(0);
@@ -171,26 +250,31 @@ public class NhanVienForm extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuActionPerformed
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
-        PhieuBanHang a = new PhieuBanHang();
+
         String title = "Tạo hoá đơn";
+
         if (checkTab(title) == true) {//true không trùng -> tạo tab mới 
+            PhieuBanHang a = new PhieuBanHang();
             bangNoiDung.addTab(title, a.getContentPane());
+
         }
     }//GEN-LAST:event_jMenu1MouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        xemHang b = new xemHang();
-        String title = "Xem hàng";
+
+        String title = "Xem danh sách hàng";
         if (checkTab(title) == true) {//true không trùng -> tạo tab mới 
+            xemHang b = new xemHang();
             bangNoiDung.addTab(title, b.getContentPane());
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         try {
-            kiemSoatHSD a = new kiemSoatHSD();
+
             String title = "Kiểm soát HSD";
             if (checkTab(title) == true) {//true không trùng -> tạo tab mới 
+                kiemSoatHSD a = new kiemSoatHSD();
                 bangNoiDung.addTab(title, a.getContentPane());
             }
         } catch (ParseException ex) {
@@ -200,12 +284,22 @@ public class NhanVienForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        TaoDataKhachHang a = new TaoDataKhachHang();
+
         String title = "Thêm khách hàng";
         if (checkTab(title) == true) {//true không trùng -> tạo tab mới 
+            TaoDataKhachHang a = new TaoDataKhachHang();
             bangNoiDung.addTab(title, a.getContentPane());
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+
+        String title = "Danh sách khách hàng";
+        if (checkTab(title) == true) {//true không trùng -> tạo tab mới 
+            ShowKhachHang a = new ShowKhachHang();
+            bangNoiDung.addTab(title, a.getContentPane());
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     //check tab có bị trùng ko
     public boolean checkTab(String a) {
@@ -269,6 +363,7 @@ public class NhanVienForm extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private java.awt.Menu menu1;

@@ -219,7 +219,7 @@ public class xemHang extends javax.swing.JFrame {
         DefaultTableModel table = (DefaultTableModel) bangSP.getModel();
         table.setRowCount(0);
         for (int i = 0; i < hh.size(); i++) {
-            if ((hh.get(i).tenHang).indexOf(tukhoa) >= 0) {
+            if (hh.get(i).tenHang.indexOf(tukhoa) >= 0||hh.get(i).hangHoaID.indexOf(tukhoa) >= 0||String.valueOf(hh.get(i).giaBan).indexOf(tukhoa) >= 0) {
                 table.addRow(new Object[]{hh.get(i).hangHoaID, hh.get(i).tenHang, hh.get(i).giaBan, hh.get(i).soLuongCon,hh.get(i).soLuongBan, hh.get(i).NSX, hh.get(i).HSD});
             }
         }

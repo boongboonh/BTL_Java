@@ -101,6 +101,7 @@ public class kiemSoatHSD extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("THÔNG TIN HẠN SỬ DỤNG");
 
+        bangSPvsHSD.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         bangSPvsHSD.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
