@@ -18,9 +18,9 @@ import javax.swing.SwingUtilities;
 import nhom8_project.view.loginView;
 
 public class NhanVienForm extends javax.swing.JFrame {
-
+    
     public static String MANHANVIEN = "";
-
+    
     public NhanVienForm() {
         initComponents();
         setLocationRelativeTo(null);
@@ -28,49 +28,49 @@ public class NhanVienForm extends javax.swing.JFrame {
         manHinhChinh();
         closeTab();
     }
-
+    
     public void manHinhChinh() {
         String title = "Tạo hoá đơn";
-
+        
         if (checkTab(title) == true) {//true không trùng -> tạo tab mới 
             PhieuBanHang a = new PhieuBanHang();
             bangNoiDung.addTab(title, a.getContentPane());
-
+            
         }
     }
-
+    
     public void closeTab() {
         bangNoiDung.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (SwingUtilities.isRightMouseButton(e)) {
                     int index = bangNoiDung.getSelectedIndex();
-                    if (bangNoiDung.getTabCount()>1) {
+                    if (bangNoiDung.getTabCount() > 1) {
                         if (JOptionPane.showConfirmDialog(null, "Bạn có muốn tắt giao diện này không?", "Thông báo", JOptionPane.YES_NO_OPTION) == 0) {
                             bangNoiDung.remove(index);
                         }
                     }
                 }
             }
-
+            
             @Override
             public void mousePressed(MouseEvent e) {
             }
-
+            
             @Override
             public void mouseReleased(MouseEvent e) {
             }
-
+            
             @Override
             public void mouseEntered(MouseEvent e) {
             }
-
+            
             @Override
             public void mouseExited(MouseEvent e) {
             }
         });
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -88,6 +88,9 @@ public class NhanVienForm extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         menuLogout = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -173,6 +176,32 @@ public class NhanVienForm extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/10207-man-student-light-skin-tone-icon-24.png"))); // NOI18N
+        jMenu6.setText("Thông tin nhân viên");
+        jMenu6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        jMenuItem5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/Actions-help-about-icon-16.png"))); // NOI18N
+        jMenuItem5.setText("Xem thông tin");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem5);
+
+        jMenuItem6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/Actions-document-edit-icon-16.png"))); // NOI18N
+        jMenuItem6.setText("Sửa thông tin");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem6);
+
+        jMenuBar1.add(jMenu6);
+
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/logout-icon-16.png"))); // NOI18N
         jMenu4.setText("Đăng xuất");
         jMenu4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -250,18 +279,18 @@ public class NhanVienForm extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuActionPerformed
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
-
+        
         String title = "Tạo hoá đơn";
-
+        
         if (checkTab(title) == true) {//true không trùng -> tạo tab mới 
             PhieuBanHang a = new PhieuBanHang();
             bangNoiDung.addTab(title, a.getContentPane());
-
+            
         }
     }//GEN-LAST:event_jMenu1MouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-
+        
         String title = "Xem danh sách hàng";
         if (checkTab(title) == true) {//true không trùng -> tạo tab mới 
             xemHang b = new xemHang();
@@ -271,7 +300,7 @@ public class NhanVienForm extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         try {
-
+            
             String title = "Kiểm soát HSD";
             if (checkTab(title) == true) {//true không trùng -> tạo tab mới 
                 kiemSoatHSD a = new kiemSoatHSD();
@@ -284,7 +313,7 @@ public class NhanVienForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-
+        
         String title = "Thêm khách hàng";
         if (checkTab(title) == true) {//true không trùng -> tạo tab mới 
             TaoDataKhachHang a = new TaoDataKhachHang();
@@ -293,7 +322,7 @@ public class NhanVienForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-
+        
         String title = "Danh sách khách hàng";
         if (checkTab(title) == true) {//true không trùng -> tạo tab mới 
             ShowKhachHang a = new ShowKhachHang();
@@ -301,9 +330,18 @@ public class NhanVienForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        new NhanVienFix().setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        new NhanVienInformation().setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     //check tab có bị trùng ko
     public boolean checkTab(String a) {
-
+        
         for (int i = 0; i < bangNoiDung.getTabCount(); i++) {
             if (bangNoiDung.getTitleAt(i).compareTo(a) == 0) {
                 return false;
@@ -318,7 +356,7 @@ public class NhanVienForm extends javax.swing.JFrame {
     public void showMessage(String message) {
         JOptionPane.showMessageDialog(this, message);
     }
-
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -361,11 +399,14 @@ public class NhanVienForm extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private java.awt.Menu menu1;
     private java.awt.Menu menu2;
     private java.awt.MenuBar menuBar1;

@@ -32,6 +32,7 @@ public class TaoDataKhachHang extends javax.swing.JFrame {
 
     public TaoDataKhachHang() {
         initComponents();
+        setLocationRelativeTo(null);
         setExtendedState(getExtendedState() | MAXIMIZED_BOTH);
         
         readFileKH();

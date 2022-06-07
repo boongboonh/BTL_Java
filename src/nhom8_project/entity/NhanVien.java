@@ -9,8 +9,6 @@ public class NhanVien {
     public String tenNhanVien;
     public String ngaySinh;
     public String gioiTinh;
-    public long luong;
-    public int soNgayLam;
     public String diaChi;
     public String SDT;
     public String email;
@@ -29,14 +27,6 @@ public class NhanVien {
 
     public String getGioiTinh() {
         return gioiTinh;
-    }
-
-    public long getLuong() {
-        return luong;
-    }
-
-    public int getSoNgayLam() {
-        return soNgayLam;
     }
 
     public String getDiaChi() {
@@ -66,15 +56,6 @@ public class NhanVien {
     public void setGioiTinh(String gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
-
-    public void setLuong(long luong) {
-        this.luong = luong;
-    }
-
-    public void setSoNgayLam(int soNgayLam) {
-        this.soNgayLam = soNgayLam;
-    }
-
     public void setDiaChi(String diaChi) {
         this.diaChi = diaChi;
     }
@@ -92,13 +73,11 @@ public class NhanVien {
     public NhanVien(){
         
     }
-    public NhanVien(String nhanVienID, String tenNhanVien, String ngaySinh, String gioiTinh, long luong, int soNgayLam, String diaChi, String SDT, String email) {
+    public NhanVien(String nhanVienID, String tenNhanVien, String ngaySinh, String gioiTinh, String diaChi, String SDT, String email) {
         this.nhanVienID = nhanVienID;
         this.tenNhanVien = tenNhanVien;
         this.ngaySinh = ngaySinh;
         this.gioiTinh = gioiTinh;
-        this.luong = luong;
-        this.soNgayLam = soNgayLam;
         this.diaChi = diaChi;
         this.SDT = SDT;
         this.email = email;

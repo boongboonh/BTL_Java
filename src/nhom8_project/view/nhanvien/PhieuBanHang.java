@@ -44,6 +44,8 @@ public class PhieuBanHang extends javax.swing.JFrame {
     public static ArrayList<KhachHang> kh = new ArrayList<KhachHang>();
     public static ArrayList<HangHoa> hh = new ArrayList<HangHoa>();
     public static ArrayList<HoaDon> hd = new ArrayList<HoaDon>();
+    public static ArrayList<NhanVien> nv = new ArrayList<NhanVien>();
+    
     int tongTienDaMua = 0;
 
     /**
@@ -51,6 +53,7 @@ public class PhieuBanHang extends javax.swing.JFrame {
      */
     public PhieuBanHang() {
         initComponents();
+        setLocationRelativeTo(null);
         setExtendedState(getExtendedState() | MAXIMIZED_BOTH);
 
         readFileNV();

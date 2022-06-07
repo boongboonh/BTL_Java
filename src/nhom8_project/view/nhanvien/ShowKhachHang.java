@@ -22,7 +22,7 @@ public class ShowKhachHang extends javax.swing.JFrame {
 
     public ShowKhachHang() {
         initComponents();
-
+        setLocationRelativeTo(null);
 
         readFileKH();
         hienThi();
@@ -232,7 +232,7 @@ public class ShowKhachHang extends javax.swing.JFrame {
         DefaultTableModel table = (DefaultTableModel) bangKH.getModel();
         table.setRowCount(0);
         for (int i = 0; i < kh.size(); i++) {
-            if ((kh.get(i).tenKhachHang).indexOf(tukhoa) >= 0 || kh.get(i).khachHangID.indexOf(tukhoa) >= 0|| kh.get(i).SDT.indexOf(tukhoa)>=0||kh.get(i).diaChi.indexOf(tukhoa)>=0||String.valueOf(kh.get(i).soTienMua).indexOf(tukhoa)>=0) {
+            if ((kh.get(i).tenKhachHang).toLowerCase().indexOf(tukhoa.toLowerCase()) >= 0 || kh.get(i).khachHangID.toLowerCase().indexOf(tukhoa.toLowerCase()) >= 0|| kh.get(i).SDT.indexOf(tukhoa)>=0||kh.get(i).diaChi.toLowerCase().indexOf(tukhoa.toLowerCase())>=0||String.valueOf(kh.get(i).soTienMua).indexOf(tukhoa)>=0) {
                 table.addRow(new Object[]{kh.get(i).khachHangID, kh.get(i).tenKhachHang, kh.get(i).SDT, kh.get(i).diaChi, kh.get(i).soTienMua, loaikh((int) kh.get(i).soTienMua)});
 
             }

@@ -35,7 +35,7 @@ public class loginView extends javax.swing.JFrame {
         String file = "NhanVien.txt";
         
         try {
-            
+            nv.clear();
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
             //DefaultTableModel tbmd = (DefaultTableModel) jTable1.getModel();
@@ -279,8 +279,7 @@ public class loginView extends javax.swing.JFrame {
                     if ((nv.get(i).accountName.compareTo(name)) == 0 && (nv.get(i).accountPass.compareTo(pass)) == 0) {
                         
                         nhom8_project.view.nhanvien.NhanVienForm.MANHANVIEN=nv.get(i).nhanVienID;
-                        
-                        System.out.println(nv.get(i).nhanVienID);
+                                              
                         this.dispose();
                         
                         new NhanVienForm().setVisible(true);

@@ -23,6 +23,7 @@ public class xemHang extends javax.swing.JFrame {
 
     public xemHang() {
         initComponents();
+        setLocationRelativeTo(null);
         setExtendedState(getExtendedState() | MAXIMIZED_BOTH);
         readFileHH();
         themLoaiHang();
@@ -34,7 +35,7 @@ public class xemHang extends javax.swing.JFrame {
     public void readFileHH() {
         String file = "HangHoa.txt";
         try {
-
+            hh.clear();
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
 
@@ -219,7 +220,7 @@ public class xemHang extends javax.swing.JFrame {
         DefaultTableModel table = (DefaultTableModel) bangSP.getModel();
         table.setRowCount(0);
         for (int i = 0; i < hh.size(); i++) {
-            if (hh.get(i).tenHang.indexOf(tukhoa) >= 0||hh.get(i).hangHoaID.indexOf(tukhoa) >= 0||String.valueOf(hh.get(i).giaBan).indexOf(tukhoa) >= 0) {
+            if (hh.get(i).tenHang.toLowerCase().indexOf(tukhoa.toLowerCase()) >= 0||hh.get(i).hangHoaID.toLowerCase().indexOf(tukhoa.toLowerCase()) >= 0||String.valueOf(hh.get(i).giaBan).indexOf(tukhoa) >= 0) {
                 table.addRow(new Object[]{hh.get(i).hangHoaID, hh.get(i).tenHang, hh.get(i).giaBan, hh.get(i).soLuongCon,hh.get(i).soLuongBan, hh.get(i).NSX, hh.get(i).HSD});
             }
         }
