@@ -2,12 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package nhom8_project.entity;
+package nhom8_project.entity.nhanvien;
 
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.regex.Pattern;
-import nhom8_project.utils.DateFormat;
 import nhom8_project.view.loginView;
 
 /**
@@ -20,10 +19,11 @@ public class NhanVien implements Serializable{
 
 
     // bắt  lỗi regex
-       Pattern rgname = Pattern.compile("^[a-zA-z ]+"); 
+       Pattern rgname = Pattern.compile("^[a-zA-Z'-'\sáàảãạăâắằấầặẵẫậéèẻ ẽẹếềểễệóòỏõọôốồổỗộ ơớờởỡợíìỉĩịđùúủũụưứ� �ửữựÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠ ƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼ� ��ỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞ ỠỢỤỨỪỬỮỰỲỴÝỶỸửữựỵ ỷỹ]*$"); 
        Pattern rgemail = Pattern.compile("^\\w+@\\w+(\\.\\w+){1,2}$");
        Pattern rgphone = Pattern.compile("^0\\d+{9}$");
-       
+       Pattern rgdate = Pattern.compile("^(?:(?:31(\\\\/|-|\\\\.)(?:0?[13578]|1[02]))\\\\1|(?:(?:29|30)(\\\\/|-|\\\\.)(?:0?[13-9]|1[0-2])\\\\2))(?:(?:1[6-9]|[2-9]\\\\d)?\\\\d{2})$|^(?:29(\\\\/|-|\\\\.)0?2\\\\3(?:(?:(?:1[6-9]|[2-9]\\\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\\\d|2[0-8])(\\\\/|-|\\\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\\\4(?:(?:1[6-9]|[2-9]\\\\d)?\\\\d{2})$");
+      
         public String getDescribed() {
         return described;
     }
@@ -66,10 +66,14 @@ public class NhanVien implements Serializable{
                     this.password="1234567";
                     break;
                 case 1:
-                   this.chucVu="Bảo trì hệ thống";
+                    this.chucVu="Bảo trì hệ thống";
+                    this.userName=null;
+                    this.password=null;
                     break;
                 case 2:
                     this.chucVu="Bảo vệ";
+                    this.userName=null;
+                    this.password=null;
                     break;
             }
         
@@ -81,32 +85,12 @@ public class NhanVien implements Serializable{
         
         return userName;
     }
-
-//    public int getTotalSalary() {
-//        return TotalSalary;
-//    }
- 
-
     public String getId() {
         return id;
     }
     public void setId(String id){
         this.id=id;
     }
-//    public boolean setId(String id) {
-//       ReadWriteFile rd=new ReadWriteFile();    
-//       NhanVien a= new NhanVien();
-//       a.id=id.trim();
-//       for(NhanVien b : rd.ReadFromNhanVien()){
-//           if(b.id.equals(a.id)){             
-//               return false;
-//           }
-//       }
-//       this.id = id.trim();
-//       return true;
-//        
-//    }
-
     public String getName() {
         return name;
     }
@@ -194,10 +178,13 @@ public class NhanVien implements Serializable{
         boolean check= false;
         while(true){
            if(birthday!=null&&!birthday.equals("")){
-                if( new DateFormat().DateParse(birthday)){
+                if(rgdate.matcher(birthday).find()){
                 this.birthday =birthday;
                 check=true;
-            }else break;
+            }else{
+                    new loginView().showMessage("Ngày tháng định dạng theo dd/MM/yyyy"); 
+                    break;
+                }
             }   else{
                     new loginView().showMessage("Ngày tháng không được để trống");                
             }
@@ -228,24 +215,6 @@ public class NhanVien implements Serializable{
       return check;
        
     }
-
-//    public int getSalary() {
-//        return salary;
-//    }
-//
-//    public void setSalary(int salary) {
-//        this.salary=salary;
-//    }
-//
-//    public int getWorkday() {
-//        return workday;
-//    }
-//
-//    public void setWorkday(int workday) {
-//         this.workday=workday;
-//    }
-
-  
     public NhanVien(){       
     }
     public NhanVien(String id, String name, String birthday, String address, String email, String phone,String chucvu,String sex,String userName,String password,boolean status,String describ) {

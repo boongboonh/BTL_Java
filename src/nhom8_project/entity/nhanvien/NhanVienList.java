@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package nhom8_project.entity;
+package nhom8_project.entity.nhanvien;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -16,31 +16,7 @@ public class NhanVienList {
     private ArrayList<NhanVien> list = new ReadWriteFile().ReadFromNhanVien();
     public ArrayList<NhanVien> getList(){
         return list;
-    }
-    private int currentIndex=0;
-    public void first(){
-        if(currentIndex>0)
-            currentIndex=0;
-    }
-    public void previous(){
-        if(currentIndex>0)
-            currentIndex--;
-    }
-    public void next(){
-        if(currentIndex<list.size()-1)
-            currentIndex++;
-    }
-    public void last(){
-         currentIndex=list.size()-1;
-    }
-    public int getCurrentNhanVienIndex(){
-        return currentIndex;
-    }
-    public NhanVien getCurrentNhanVien(){    
-    if(list.size()==0)
-        return null;
-    return list.get(currentIndex);
-    }
+    }  
     public void add(NhanVien nv){
         list.add(nv);
     }

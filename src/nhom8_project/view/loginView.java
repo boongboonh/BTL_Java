@@ -7,7 +7,7 @@ package nhom8_project.view;
 import java.util.List;
 import javax.swing.JOptionPane;
 import nhom8_project.entity.User;        
-import nhom8_project.entity.NhanVien;
+import nhom8_project.entity.nhanvien.NhanVien;
 import nhom8_project.utils.ReadWriteFile;
 import nhom8_project.view.admin.Admin;
 import nhom8_project.view.nhanvien.NhanVienFrame;
@@ -25,7 +25,6 @@ public class loginView extends javax.swing.JFrame {
         initComponents();
         //Cho hộp thoại ra giữa màn hình
         setLocationRelativeTo(null);
-        //setExtendedState(getExtendedState() | MAXIMIZED_BOTH);
        
     }
 
@@ -99,11 +98,6 @@ public class loginView extends javax.swing.JFrame {
         username.setForeground(new java.awt.Color(0, 0, 255));
         username.setToolTipText("");
         username.setName("admin"); // NOI18N
-        username.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameActionPerformed(evt);
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Password");
@@ -218,11 +212,6 @@ public class loginView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_usernameActionPerformed
       public void showMessage(String message){
         JOptionPane.showMessageDialog(this,message,"Thông báo",JOptionPane.ERROR_MESSAGE);
     }

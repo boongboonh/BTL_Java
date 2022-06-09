@@ -5,6 +5,7 @@
 package nhom8_project.view.admin;
 
 import javax.swing.ImageIcon;
+
 //import nhom8_project.view.admin.NhanVienManagementPanel;
 import nhom8_project.view.loginView;
 
@@ -15,6 +16,7 @@ import nhom8_project.view.loginView;
 public class Admin extends javax.swing.JFrame {
     private NhanVienManagementPanel nvmp;
     private HangHoaManagementPanel hhmp;
+    private HoaDonManagementPanel khmp;
     /**
      * Creates new form Admin
      */
@@ -24,6 +26,7 @@ public class Admin extends javax.swing.JFrame {
         //setLocationRelativeTo(null);
         //Hộp thoại full màn hình
         setExtendedState(getExtendedState() | MAXIMIZED_BOTH);
+        //new khohanglist().DienKhoHang();
         
     }
 
@@ -48,6 +51,13 @@ public class Admin extends javax.swing.JFrame {
         }
         tabpaneAdmin.setSelectedComponent(hhmp);
     }
+    public void addTabbedPaneKH(){
+        if(khmp==null){
+            khmp = new HoaDonManagementPanel();
+            tabpaneAdmin.addTab("Quản Lý Kho Hàng", khmp);
+        }
+        tabpaneAdmin.setSelectedComponent(khmp);
+    }
     public void Logout(){
         //Đóng hộp thoại
         this.dispose();
@@ -70,6 +80,7 @@ public class Admin extends javax.swing.JFrame {
         ToolbarBtnQLNV = new javax.swing.JButton();
         ToolbarQLHH = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
+        jButton1 = new javax.swing.JButton();
         ToolbarBtnAbout = new javax.swing.JButton();
         tabpaneAdmin = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -81,6 +92,7 @@ public class Admin extends javax.swing.JFrame {
         menuManagementNhanvien = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JToolBar.Separator();
         menuQLHH = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         menuAbout = new javax.swing.JMenuItem();
 
@@ -126,6 +138,17 @@ public class Admin extends javax.swing.JFrame {
         });
         jToolBar1.add(ToolbarQLHH);
         jToolBar1.add(jSeparator3);
+
+        jButton1.setText("Quản lý hoá đơn");
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton1);
 
         ToolbarBtnAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/Actions-help-about-icon-16.png"))); // NOI18N
         ToolbarBtnAbout.setText("Giới Thiệu");
@@ -186,6 +209,15 @@ public class Admin extends javax.swing.JFrame {
             }
         });
         jMenu2.add(menuQLHH);
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem1.setText("Hoá Đơn");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
 
         jMenuBar1.add(jMenu2);
 
@@ -257,14 +289,34 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_ToolbarBtnAboutActionPerformed
 
     private void menuAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAboutActionPerformed
-        new AboutProjectDialog(this, true).setVisible(true);
-        
-       
+        new AboutProjectDialog(this, true).setVisible(true);      
     }//GEN-LAST:event_menuAboutActionPerformed
 
     private void ToolbarQLHHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ToolbarQLHHActionPerformed
-     addTabbedPaneHH();
+        try {
+              addTabbedPaneHH();
+        } catch (Exception e) {
+             new loginView().showMessage("Lỗi mở hàng hoá");
+        }
+      
     }//GEN-LAST:event_ToolbarQLHHActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        try {
+            addTabbedPaneKH();
+        } catch (Exception e) {
+            new loginView().showMessage("Lỗi mở hoá đơn");
+        }
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         try {
+            addTabbedPaneKH();
+        } catch (Exception e) {
+            new loginView().showMessage("Lỗi mở hoá đơn");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -307,10 +359,12 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JButton ToolbarBtnQLNV;
     private javax.swing.JButton ToolbarQLHH;
     private javax.swing.JMenuItem ht_exit;
+    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;

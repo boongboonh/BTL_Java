@@ -3,10 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/HocKy6/Java_subject/Nhom8_project/src/nhom8_project/entity/NhanVienList.java</file>
-            <file>file:/D:/HocKy6/Java_subject/Nhom8_project/src/nhom8_project/view/loginView.java</file>
-            <file>file:/D:/HocKy6/Java_subject/Nhom8_project/src/nhom8_project/entity/NhanVien.java</file>
-            <file>file:/D:/HocKy6/Java_subject/Nhom8_project/src/nhom8_project/view/admin/HangHoaManagementPanel.java</file>
+            <file>file:/D:/HocKy6/Java_subject/Nhom8_project/src/nhom8_project/entity/khohang/khohang.java</file>
+            <file>file:/D:/HocKy6/Java_subject/Nhom8_project/src/nhom8_project/entity/hanghoa/HangHoaList.java</file>
+            <file>file:/D:/HocKy6/Java_subject/Nhom8_project/src/nhom8_project/view/admin/HoaDonManagementPanel.java</file>
+            <file>file:/D:/HocKy6/Java_subject/Nhom8_project/src/nhom8_project/entity/donhang/HoaDonList.java</file>
+            <file>file:/D:/HocKy6/Java_subject/Nhom8_project/src/nhom8_project/view/admin/Admin.java</file>
+            <file>file:/D:/HocKy6/Java_subject/Nhom8_project/src/nhom8_project/entity/hanghoa/HangHoa.java</file>
+            <file>file:/D:/HocKy6/Java_subject/Nhom8_project/src/nhom8_project/view/admin/HoaDonDetailDialog.java</file>
+            <file>file:/D:/HocKy6/Java_subject/Nhom8_project/src/nhom8_project/entity/khohang/khohanglist.java</file>
+            <file>file:/D:/HocKy6/Java_subject/Nhom8_project/src/nhom8_project/utils/ReadWriteFile.java</file>
         </group>
     </open-files>
 </project-private>

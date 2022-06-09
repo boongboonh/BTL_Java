@@ -5,16 +5,13 @@
 package nhom8_project.view.admin;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import nhom8_project.entity.NhanVien;
-import nhom8_project.entity.NhanVienList;
+import nhom8_project.entity.nhanvien.NhanVien;
+import nhom8_project.entity.nhanvien.NhanVienList;
 import nhom8_project.utils.DateFormat;
 import nhom8_project.utils.ReadWriteFile;
 
@@ -118,7 +115,6 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
                     int size=new ReadWriteFile().ReadFromNhanVien().size();       
                     String id=Integer.toString(new DateFormat().Year(LocalDate.now()))+"nv"+Integer.toString(++size);
                     nv.setId(id);
-                    nv.setUserName(id);
                     if(!nv.setName(nameNVM.getText().trim())){
                         break;
                     }
@@ -137,7 +133,7 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
                     nv.setChucVu(cbcv.getSelectedIndex(),id);                                     
                     nv.setSex(rdNam.isSelected());
                     list.add(nv);
-                    new ReadWriteFile().WriteToFile(list,"nhanvien.dat",true);
+                    new ReadWriteFile().WriteToNhanVien(list,"nhanvien.dat",true);
                     showMessageInf("Thêm thành công");                   
                     initTable();
                     ClearNV();
@@ -171,7 +167,7 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
                         int index= listread.indexOf(nv);
                         listread.remove(index);
                         listread.add(index, nv);
-                        new ReadWriteFile().WriteToFile(listread,"nhanvien.dat",false);
+                        new ReadWriteFile().WriteToNhanVien(listread,"nhanvien.dat",false);
                         showMessageInf("Sửa thành công");
                         break;  
                     }
@@ -180,7 +176,8 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
                 }
         }           
     }
-    public void ClearNV(){      
+    public void ClearNV(){  
+        txtSearchID.setText("");
         nameNVM.setText("");
         birthdayNVM.setText("");
         addressNVM.setText("");
@@ -239,7 +236,7 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
                         int index= listread.indexOf(nv);
                         listread.remove(index);
                         listread.add(index, nv);
-                        new ReadWriteFile().WriteToFile(listread,"nhanvien.dat",false);
+                        new ReadWriteFile().WriteToNhanVien(listread,"nhanvien.dat",false);
                         showMessageInf("Sa thải thành công");
                         break;  
                     }
