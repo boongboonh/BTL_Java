@@ -4,8 +4,10 @@
  */
 package nhom8_project.utils;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import nhom8_project.view.loginView;
 
 /**
@@ -30,6 +32,14 @@ public class DateFormat {
         }   
        
     }
+    
+    public String DateTxt(){
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date date = new Date();
+		String dateFormat = formatter.format(date);
+                return dateFormat;
+    }
+
     public static void main(String[] args) {
         
         new DateFormat().DateParse("29/02/2001");
@@ -38,8 +48,8 @@ public class DateFormat {
                 System.out.println("       ngu dot     ");
               System.out.println("       ngu dot     ".trim());
  //       System.out.println(new DateFormat().Year(LocalDate.now()));                    
-           
+                     
     }
-
-  
+             
+ 
 }

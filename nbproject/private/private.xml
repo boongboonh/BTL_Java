@@ -3,10 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/HocKy6/Java_subject/Nhom8_project/src/nhom8_project/entity/NhanVienList.java</file>
-            <file>file:/D:/HocKy6/Java_subject/Nhom8_project/src/nhom8_project/view/loginView.java</file>
-            <file>file:/D:/HocKy6/Java_subject/Nhom8_project/src/nhom8_project/entity/NhanVien.java</file>
-            <file>file:/D:/HocKy6/Java_subject/Nhom8_project/src/nhom8_project/view/admin/HangHoaManagementPanel.java</file>
+            <file>file:/C:/Users/DELL/Downloads/Java/Nhom8_project%20(3)/src/nhom8_project/view/admin/History.java</file>
+            <file>file:/C:/Users/DELL/Downloads/Java/Nhom8_project%20(3)/src/nhom8_project/entity/NhanVienList.java</file>
+            <file>file:/C:/Users/DELL/Downloads/Java/Nhom8_project%20(3)/src/nhom8_project/entity/ListLt.java</file>
+            <file>file:/C:/Users/DELL/Downloads/Java/Nhom8_project%20(3)/src/nhom8_project/view/admin/LuongThuongManagement.java</file>
+            <file>file:/C:/Users/DELL/Downloads/Java/Nhom8_project%20(3)/src/nhom8_project/entity/LuongThuong.java</file>
+            <file>file:/C:/Users/DELL/Downloads/Java/Nhom8_project%20(3)/src/nhom8_project/entity/LichSu.java</file>
+            <file>file:/C:/Users/DELL/Downloads/Java/Nhom8_project%20(3)/src/nhom8_project/view/admin/Admin.java</file>
+            <file>file:/C:/Users/DELL/Downloads/Java/Nhom8_project%20(3)/src/nhom8_project/entity/ListLs.java</file>
+            <file>file:/C:/Users/DELL/Downloads/Java/Nhom8_project%20(3)/src/nhom8_project/view/admin/HangHoaManagementPanel.java</file>
+            <file>file:/C:/Users/DELL/Downloads/Java/Nhom8_project%20(3)/src/nhom8_project/entity/NhanVien.java</file>
+            <file>file:/C:/Users/DELL/Downloads/Java/Nhom8_project%20(3)/src/nhom8_project/view/admin/NhanVienDetailDialog.java</file>
+            <file>file:/C:/Users/DELL/Downloads/Java/Nhom8_project%20(3)/src/nhom8_project/utils/DateFormat.java</file>
+            <file>file:/C:/Users/DELL/Downloads/Java/Nhom8_project%20(3)/src/nhom8_project/view/admin/NhanVienManagementPanel.java</file>
+            <file>file:/C:/Users/DELL/Downloads/Java/Nhom8_project%20(3)/src/nhom8_project/utils/ReadWriteFile.java</file>
         </group>
     </open-files>
 </project-private>

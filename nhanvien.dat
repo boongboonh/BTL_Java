@@ -1,6 +1,12 @@
 2022nv1;Kiên;11/11/1111;1;1@e.u;01;Bán hàng;Nam;2022nv1;1234567;false;Xin nghỉ
-2022nv2;Sơn;11/11/1111;1;1@e.v;01;Bán hàng;Nam;2022nv2;1234567;false;Nợ kiên 20k - 2/6 && nợ kiên 20k -3/6
+2022nv2;Sơn;11/11/1111;1;1@e.v;01;Bán hàng;Nam;2022nv2;1234567;true;Nợ kiên 20k - 2/6 && nợ kiên 20k -3/6
 2022nv3;admin;11/10/2001;bn;1@f.v;0123;Bán hàng;Nam;2022nv3;1234567;false;TEst
 2022nv4;Nhân viên 4;03/06/2022;Hà Nội;1@e.i;012;Bảo trì hệ thống;Nữ;null;null;false;Test 
 2022nv5;nhan vien 5;11/11/1111;bn;1@w.e;01;Bảo vệ;Nữ;null;null;false;ừ
-2022nv6;nhân viên 6;11/11/1111;bn`;1@e.u;0231;Bán hàng;Nữ;null;null;false;ok
+2022nv6;nhân viên 6;11/11/2222;bn`;1@e.u;02222254748;Bán hàng;Nữ;2022nv6;1234567;false;ok
+2022nv7;Lưu Trung Hiếu;03/08/2001;Bắc Giang;lthieu2k1@gmail.com;03569716384;Bán hàng;Nam;null;null;true;Ko thích2022nv8
+2022nv8;Ngô Văn Hưng;11/10/2001;Băc Ninh;anhhung@gmail.com;037948415;Bảo vệ;Nam;2022nv8;null;true;null
+2022nv9;Nguyễn Văn Bình;03/08/2001;Hà Nội;vanbinh@gmail.com;0299746712;Bán hàng;Nam;null;null;false;Không làm việc
+2022nv10;Bùi Đức Chiến;06/05/2001;Hà Nội;ducchien@gmail.com;03975684168;Bán hàng;Nam;null;null;false;Xin nghỉ
+2022nv11;Nguyễn Nhân Trung Kiên;09/05/2001;Bắc Giang;trungkien@gmail.com;0397896948;Bán hàng;Nam;2022nv11;1234567;true;null
+2022nv12;Nguyễn Văn a;05/04/2001;Tây Ninh;vanaa@gmail.com;0358746715;Bán hàng;Nam;null;null;false;Nghỉ quá nhiều

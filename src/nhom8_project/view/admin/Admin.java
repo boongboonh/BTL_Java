@@ -15,6 +15,8 @@ import nhom8_project.view.loginView;
 public class Admin extends javax.swing.JFrame {
     private NhanVienManagementPanel nvmp;
     private HangHoaManagementPanel hhmp;
+    private LuongThuongManagement ltm;
+    private History hm;
     /**
      * Creates new form Admin
      */
@@ -38,6 +40,19 @@ public class Admin extends javax.swing.JFrame {
         }
         tabpaneAdmin.setSelectedComponent(nvmp);
     }
+    
+    public void addTabbedPaneLS(){
+        if(hm ==null){
+        hm = new History();
+        // Lấy icon 
+        ImageIcon icon = new ImageIcon(getClass()
+                .getResource("/nhom8_project/icon/Person-Male-Light-icon-16.png"));
+        // Add jpanel NhanVienManagementPanel vào tabbedpane
+        tabpaneAdmin.addTab("Lịch sử", icon, hm);
+        }
+        tabpaneAdmin.setSelectedComponent(hm);
+    }
+    
     public void addTabbedPaneHH(){
         if(hhmp ==null){
             hhmp = new HangHoaManagementPanel();
@@ -47,6 +62,18 @@ public class Admin extends javax.swing.JFrame {
           tabpaneAdmin.addTab("Quản Lý Hàng Hoá", icon, hhmp);
         }
         tabpaneAdmin.setSelectedComponent(hhmp);
+    }
+    
+     public void addTabbedPaneLT(){
+        if(ltm ==null){
+        ltm = new LuongThuongManagement();
+        // Lấy icon 
+        ImageIcon icon = new ImageIcon(getClass()
+                .getResource("/nhom8_project/icon/Person-Male-Light-icon-16.png"));
+        // Add jpanel NhanVienManagementPanel vào tabbedpane
+        tabpaneAdmin.addTab("Lương thưởng", icon, ltm,"Lương thưởng");
+        }
+        tabpaneAdmin.setSelectedComponent(ltm);
     }
     public void Logout(){
         //Đóng hộp thoại
@@ -69,6 +96,8 @@ public class Admin extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JToolBar.Separator();
         ToolbarBtnQLNV = new javax.swing.JButton();
         ToolbarQLHH = new javax.swing.JButton();
+        ToolbarLT = new javax.swing.JButton();
+        ToolbarLS = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
         ToolbarBtnAbout = new javax.swing.JButton();
         tabpaneAdmin = new javax.swing.JTabbedPane();
@@ -125,6 +154,34 @@ public class Admin extends javax.swing.JFrame {
             }
         });
         jToolBar1.add(ToolbarQLHH);
+
+        ToolbarLT.setText("Lương Thưởng");
+        ToolbarLT.setFocusable(false);
+        ToolbarLT.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ToolbarLT.setMaximumSize(new java.awt.Dimension(106, 44));
+        ToolbarLT.setMinimumSize(new java.awt.Dimension(106, 44));
+        ToolbarLT.setPreferredSize(new java.awt.Dimension(106, 44));
+        ToolbarLT.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        ToolbarLT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ToolbarLTActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(ToolbarLT);
+
+        ToolbarLS.setText("Lịch sử");
+        ToolbarLS.setFocusable(false);
+        ToolbarLS.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ToolbarLS.setMaximumSize(new java.awt.Dimension(106, 44));
+        ToolbarLS.setMinimumSize(new java.awt.Dimension(106, 44));
+        ToolbarLS.setPreferredSize(new java.awt.Dimension(106, 44));
+        ToolbarLS.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        ToolbarLS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ToolbarLSActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(ToolbarLS);
         jToolBar1.add(jSeparator3);
 
         ToolbarBtnAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/Actions-help-about-icon-16.png"))); // NOI18N
@@ -209,7 +266,7 @@ public class Admin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(tabpaneAdmin)
@@ -266,6 +323,15 @@ public class Admin extends javax.swing.JFrame {
      addTabbedPaneHH();
     }//GEN-LAST:event_ToolbarQLHHActionPerformed
 
+    private void ToolbarLTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ToolbarLTActionPerformed
+     addTabbedPaneLT();
+     // TODO add your handling code here:
+    }//GEN-LAST:event_ToolbarLTActionPerformed
+
+    private void ToolbarLSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ToolbarLSActionPerformed
+        addTabbedPaneLS();
+    }//GEN-LAST:event_ToolbarLSActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -305,6 +371,8 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JButton ToolbarBtnAbout;
     private javax.swing.JButton ToolbarBtnLogout;
     private javax.swing.JButton ToolbarBtnQLNV;
+    private javax.swing.JButton ToolbarLS;
+    private javax.swing.JButton ToolbarLT;
     private javax.swing.JButton ToolbarQLHH;
     private javax.swing.JMenuItem ht_exit;
     private javax.swing.JMenu jMenu1;

@@ -3,8 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package nhom8_project.view.admin;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -13,6 +15,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import nhom8_project.entity.LichSu;
+import nhom8_project.entity.ListLs;
 import nhom8_project.entity.NhanVien;
 import nhom8_project.entity.NhanVienList;
 import nhom8_project.utils.DateFormat;
@@ -26,9 +30,11 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
     private DefaultTableModel tbModel=null;
     private Object [] Title= new Object[]{"Mã nhân viên","Tên nhân viên","Ngày sinh","Địa chỉ","Chức vụ","Giới tính","Email","Số điện thoại","Tình trạng"};
     private NhanVienList nvlist;
+    private ListLs listls;
     private NhanVienDetailDialog nvdetail;
     private String idCheck,describ;
     private boolean status;
+    
     /**
      * Creates new form NhanVienManagementPanel
      */
@@ -115,6 +121,9 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
                while(true){
                     ArrayList<NhanVien> list = new ArrayList<NhanVien>();
                     NhanVien nv = new NhanVien();
+                    
+                    
+                    
                     int size=new ReadWriteFile().ReadFromNhanVien().size();       
                     String id=Integer.toString(new DateFormat().Year(LocalDate.now()))+"nv"+Integer.toString(++size);
                     nv.setId(id);
@@ -136,6 +145,20 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
                     }     
                     nv.setChucVu(cbcv.getSelectedIndex(),id);                                     
                     nv.setSex(rdNam.isSelected());
+                    
+                                       
+                    ArrayList<LichSu> listr = new ArrayList<LichSu>();
+                    LichSu ls = new LichSu();
+                    ls.setTime(new DateFormat().DateTxt());
+                    ls.setType("Nhân viên");
+                    ls.setId(id);
+                    ls.setName(nameNVM.getText().trim());
+                    ls.setActive("Thêm");
+                    ls.setStatus(true);
+                    ls.setDescribe("Không");
+                    listr.add(ls);
+                    new ReadWriteFile().WriteFileLs(listr,"LichSu.dat",true);
+                    
                     list.add(nv);
                     new ReadWriteFile().WriteToFile(list,"nhanvien.dat",true);
                     showMessageInf("Thêm thành công");                   
@@ -169,6 +192,19 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
                         nv.setChucVu(cbcv.getSelectedIndex(),idCheck);                                     
                         nv.setSex(rdNam.isSelected());
                         int index= listread.indexOf(nv);
+                        
+                    ArrayList<LichSu> listr = new ArrayList<LichSu>();
+                    LichSu ls = new LichSu();
+                    ls.setTime(new DateFormat().DateTxt());
+                    ls.setType("Nhân viên");
+                    ls.setId(txtSearchID.getText().trim());
+                    ls.setName(nameNVM.getText().trim());
+                    ls.setActive("Sửa");
+                    ls.setStatus(true);
+                    ls.setDescribe("Không");
+                    listr.add(ls);
+                    new ReadWriteFile().WriteFileLs(listr,"LichSu.dat",true);
+                        
                         listread.remove(index);
                         listread.add(index, nv);
                         new ReadWriteFile().WriteToFile(listread,"nhanvien.dat",false);
@@ -237,6 +273,19 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
                             break;
                         }
                         int index= listread.indexOf(nv);
+                        
+                    ArrayList<LichSu> listr = new ArrayList<LichSu>();
+                    LichSu ls = new LichSu();
+                    ls.setTime(new DateFormat().DateTxt());
+                    ls.setType("Nhân viên");
+                    ls.setId(idCheck);
+                    ls.setName(nameNVM.getText().trim());
+                    ls.setActive("Sa thải");
+                    ls.setStatus(false);
+                    ls.setDescribe(nv.getDescribed());
+                    listr.add(ls);
+                    new ReadWriteFile().WriteFileLs(listr,"LichSu.dat",true);
+                        
                         listread.remove(index);
                         listread.add(index, nv);
                         new ReadWriteFile().WriteToFile(listread,"nhanvien.dat",false);
@@ -296,6 +345,14 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(0, 0, 255));
         jLabel1.setText("Quản lý nhân viên");
 
+        tableNVM.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         jScrollPane1.setViewportView(tableNVM);
 
         data.setName(""); // NOI18N
@@ -307,6 +364,11 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
         buttonGroup1.add(rdNam);
         rdNam.setSelected(true);
         rdNam.setText("Nam");
+        rdNam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdNamActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(rdNu);
         rdNu.setText("Nữ");
@@ -318,6 +380,12 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
         jLabel10.setText("Giới tính");
 
         jLabel4.setText("Ngày sinh");
+
+        nameNVM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameNVMActionPerformed(evt);
+            }
+        });
 
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nhom8_project/icon/Person-Male-Light-icon-48.png"))); // NOI18N
@@ -641,6 +709,14 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
             showMessageError("Sa thải bị lỗi");
         }   
     }//GEN-LAST:event_btnSathaiActionPerformed
+
+    private void nameNVMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameNVMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameNVMActionPerformed
+
+    private void rdNamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdNamActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdNamActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
