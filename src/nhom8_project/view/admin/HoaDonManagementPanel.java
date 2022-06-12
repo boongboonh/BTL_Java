@@ -141,14 +141,13 @@ public class HoaDonManagementPanel extends javax.swing.JPanel {
         btnDetail = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
         cbcheck = new javax.swing.JComboBox<>();
-        jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel1.setText("Quản Lý Kho Hàng");
+        jLabel1.setText("Quản Lý Đơn Hàng");
 
         jLabel2.setText("Mã hoá đơn :");
 
@@ -368,13 +367,10 @@ public class HoaDonManagementPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator3)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jLabel1)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jSeparator4)
                     .addComponent(jScrollPane1))
                 .addContainerGap())
@@ -392,9 +388,7 @@ public class HoaDonManagementPanel extends javax.swing.JPanel {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(22, 22, 22)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
@@ -428,8 +422,8 @@ public class HoaDonManagementPanel extends javax.swing.JPanel {
                         break;
                     }
                     hd.setDateNhap();
-                    if(!hd.setNhaSX(txtNCC.getText().trim())){
-                        break;
+                    if(!hd.setNhaSX(txtNCC.getText().trim())){   
+                        break;                    
                     }
                     //Them so luong vao  hang hoa
                     HangHoa a= hhlist.FindByID(mhh.getText().trim());
@@ -438,11 +432,11 @@ public class HoaDonManagementPanel extends javax.swing.JPanel {
                         a.setSoLuongCon(String.valueOf(slc));
                         int index = listread.indexOf(a);
                         listread.remove(index);
-                        listread.add(index, a);
+                        listread.add(index, a);                    
                         new ReadWriteFile().WriteToHangHoa(listread,"hanghoa.dat",false);
                     }
                     list.add(hd);
-                    new ReadWriteFile().WriteToHoaDon(list,"hoadon.dat",true);
+                    new ReadWriteFile().WriteToHoaDon(list,"hoadonnhap.dat",true);
                     nvmp.showMessageInf("Thêm thành công");                   
                     initTable();
                     ClearKH();
@@ -488,7 +482,7 @@ public class HoaDonManagementPanel extends javax.swing.JPanel {
                                     new ReadWriteFile().WriteToHangHoa(listread,"hanghoa.dat",false);
                                 }
                                 hdread.add(index, hd);
-                                new ReadWriteFile().WriteToHoaDon(hdread,"hoadon.dat",false);
+                                new ReadWriteFile().WriteToHoaDon(hdread,"hoadonnhap.dat",false);
                                 nvmp.showMessageInf("Sửa thành công");
                                 break;  
                                 }
@@ -526,7 +520,7 @@ public class HoaDonManagementPanel extends javax.swing.JPanel {
                                 }
                                 int index= hdread.indexOf(hd);
                                 hdread.remove(index);                               
-                                new ReadWriteFile().WriteToHoaDon(hdread,"hoadon.dat",false);
+                                new ReadWriteFile().WriteToHoaDon(hdread,"hoadonnhap.dat",false);
                                 nvmp.showMessageInf("Xoá thành công");
                                 break;  
                                 }
@@ -570,7 +564,7 @@ public class HoaDonManagementPanel extends javax.swing.JPanel {
                    addHoaDon();
              }
         } catch (Exception e) {
-            nvmp.showMessageError("Thêm bị lỗi ");
+            nvmp.showMessageError("Thêm bị lỗi "+e.getMessage());
         }     
 
     }//GEN-LAST:event_btnAddActionPerformed
@@ -614,14 +608,25 @@ public class HoaDonManagementPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailActionPerformed
-       hdlist = new HoaDonList();
+        try {
+            hdlist = new HoaDonList();
        ArrayList<HoaDon> listhdbyid = hdlist.FindListHDByID(txtMaHD.getText());              
         new HoaDonDetailDialog(new Admin(), true,listhdbyid, txtMaHD.getText().trim(), 
                 txtTenHD.getText().trim(),txtNCC.getText().trim(),date ).setVisible(true);
+        } catch (Exception e) {
+            nvmp.showMessageError("Lỗi "+e.getMessage());
+        }
+        
     }//GEN-LAST:event_btnDetailActionPerformed
 
     private void cbcheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbcheckActionPerformed
-            checkHDNull();
+        try {
+             checkHDNull();
+        } catch (Exception e) {
+            nvmp.showMessageError("Lỗi "+e.getMessage());
+        }
+ 
+       
     }//GEN-LAST:event_cbcheckActionPerformed
 
 
@@ -646,7 +651,6 @@ public class HoaDonManagementPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTextField mhh;

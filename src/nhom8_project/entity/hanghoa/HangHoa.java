@@ -15,7 +15,7 @@ import nhom8_project.view.loginView;
  */
 public class HangHoa {
   private String hangHoaID,tenHang,donViTinh,soLuongBan,soLuongCon,HSD,NSX,giaNhap,giaBan,loaiHang;
-  Pattern rgname = Pattern.compile("^[a-zA-Z'-'\sáàảãạăâắằấầặẵẫậéèẻ ẽẹếềểễệóòỏõọôốồổỗộ ơớờởỡợíìỉĩịđùúủũụưứ� �ửữựÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠ ƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼ� ��ỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞ ỠỢỤỨỪỬỮỰỲỴÝỶỸửữựỵ ỷỹ]*$"); 
+  Pattern rgname = Pattern.compile("^[a-zA-Z'-'\sáàảãạăâắằấầặẵẫậéèẻ ẽêẹếềểễệóòỏõọôốồổỗộ ơớờởỡợíìỉĩịđùúủũụưứ� �ửữựÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠ ƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼ� ��ỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞ ỠỢỤỨỪỬỮỰỲỴÝỶỸửữựỵ ỷỹ]*$"); 
   Pattern rgmhh = Pattern.compile("^[a-zA-Z0-9 _]*$");
   Pattern rgsl= Pattern.compile("^[0-9]*$");
 
@@ -53,8 +53,22 @@ public class HangHoa {
         return donViTinh;
     }
 
-    public void setDonViTinh(String donViTinh) {
-        this.donViTinh = donViTinh;
+    public boolean setDonViTinh(String donViTinh) {
+        boolean check=false;
+        while(true){
+            if(donViTinh!=null&&!donViTinh.equals("")){
+                if(rgname.matcher(donViTinh).find()){
+                    this.donViTinh =donViTinh;
+                    check=true;                     
+            }else{
+                    new loginView().showMessage("Đơn vị tính chỉ nhập kí tự chữ ");
+                }                
+           }else{
+                new loginView().showMessage("Đơn vị tính không được để trống");
+            }
+            break;
+        }
+        return check;     
     }
     public String getSoLuongBan() {
         return soLuongBan;
@@ -188,12 +202,12 @@ public class HangHoa {
     public HangHoa() {
     }
 
-    public HangHoa(String hangHoaID, String tenHang, String donViTinh, String soLuongBan, String soLuongCon, String HSD, String NSX,String giaNhap, String giaBan, String loaiHang) {
+    public HangHoa(String hangHoaID, String tenHang, String donViTinh, String soLuongCon ,String soLuongBan, String HSD, String NSX,String giaNhap, String giaBan, String loaiHang) {
         this.hangHoaID = hangHoaID;
         this.tenHang = tenHang;
-        this.donViTinh = donViTinh;
-        this.soLuongBan = soLuongBan;
+        this.donViTinh = donViTinh;       
         this.soLuongCon = soLuongCon;
+        this.soLuongBan = soLuongBan;
         this.HSD = HSD;
         this.NSX = NSX;
         this.giaNhap=giaNhap;
@@ -224,7 +238,7 @@ public class HangHoa {
 
     @Override
     public String toString() {
-        return hangHoaID+";"+tenHang+";"+donViTinh+";"+soLuongBan+";"+soLuongCon+";"+HSD+";"+NSX+";"+giaNhap+";"+giaBan+";"+loaiHang;
+        return hangHoaID+";"+tenHang+";"+donViTinh+";"+soLuongCon+";"+soLuongBan+";"+HSD+";"+NSX+";"+giaNhap+";"+giaBan+";"+loaiHang;
     }
     
 }

@@ -30,13 +30,9 @@ public class DateFormat {
     public boolean DateParse(String date){
         DateTimeFormatter dtf= DateTimeFormatter.ofPattern("dd/MM/yyyy");
         try {
-             LocalDate ld = LocalDate.parse(date, dtf);
-           //  System.out.println(ld);
-            // System.out.println(ld.getYear());
-            System.out.println(ld.getDayOfYear());
+             LocalDate ld = LocalDate.parse(date, dtf);         
             return true;
-        } catch (Exception e) {
-          //  System.out.println();
+        } catch (Exception e) {    
             new loginView().showMessage("Sai định dạng date, ví dụ 01/01/1970 ");
              return false;
         }   
@@ -57,29 +53,10 @@ public class DateFormat {
              else{
                  new loginView().showMessage("Hạn sử dụng phải lớn hơn Ngày sản xuất ");
                   return false;
-             }
-           //  System.out.println(ld);
-            // System.out.println(ld.getYear());
-          
+             }   
         } catch (Exception e) {
-          //  System.out.println();
             new loginView().showMessage("Sai định dạng date, ví dụ 01/01/1970 ");
              return false;
         }   
     }
-    public static void main(String[] args) {
-        
-        new DateFormat().DateParse("29/02/2001");
-        new DateFormat().DateParse("01/03/2001");
-//        LocalDate ldd = LocalDate.parse("2017/03/12");
-//        System.out.println(ldd); 
-                System.out.println("       ngu dot     ");
-              System.out.println("       ngu dot     ".trim());
-              
-           //   new DateFormat().DateNow();
- //       System.out.println(new DateFormat().Year(LocalDate.now()));                    
-           
-    }
-
-  
 }

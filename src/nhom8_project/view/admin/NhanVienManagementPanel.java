@@ -10,6 +10,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import nhom8_project.entity.lichsu.LichSu;
 import nhom8_project.entity.nhanvien.NhanVien;
 import nhom8_project.entity.nhanvien.NhanVienList;
 import nhom8_project.utils.DateFormat;
@@ -130,6 +131,20 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
                     if(!nv.setEmail(emailNVM.getText().trim())){
                         break;
                     }     
+                    
+                    ArrayList<LichSu> listr = new ArrayList<LichSu>();
+                    LichSu ls = new LichSu();
+                    ls.setTime(new DateFormat().DateNow());
+                    ls.setType("Nhân viên");
+                    ls.setId(id);
+                    ls.setName(nameNVM.getText().trim());
+                    ls.setActive("Thêm");
+                    ls.setStatus(true);
+                    ls.setDescribe("Không");
+                    listr.add(ls);
+                    new ReadWriteFile().WriteFileLs(listr,"LichSu.dat",true);
+                    
+                    
                     nv.setChucVu(cbcv.getSelectedIndex(),id);                                     
                     nv.setSex(rdNam.isSelected());
                     list.add(nv);
@@ -162,6 +177,19 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
                         if(!nv.setEmail(emailNVM.getText().trim())){
                             break;
                         }     
+                        
+                    ArrayList<LichSu> listr = new ArrayList<LichSu>();
+                    LichSu ls = new LichSu();
+                    ls.setTime(new DateFormat().DateNow());
+                    ls.setType("Nhân viên");
+                    ls.setId(idCheck);
+                    ls.setName(nameNVM.getText().trim());
+                    ls.setActive("Sửa");
+                    ls.setStatus(true);
+                    ls.setDescribe("Không");
+                    listr.add(ls);
+                    new ReadWriteFile().WriteFileLs(listr,"LichSu.dat",true);
+                        
                         nv.setChucVu(cbcv.getSelectedIndex(),idCheck);                                     
                         nv.setSex(rdNam.isSelected());
                         int index= listread.indexOf(nv);
@@ -233,6 +261,19 @@ public final class NhanVienManagementPanel extends javax.swing.JPanel {
                         if(!nv.setDescribed(describ)){
                             break;
                         }
+                        
+                    ArrayList<LichSu> listr = new ArrayList<LichSu>();
+                    LichSu ls = new LichSu();
+                    ls.setTime(new DateFormat().DateNow());
+                    ls.setType("Nhân viên");
+                    ls.setId(idCheck);
+                    ls.setName(nameNVM.getText().trim());
+                    ls.setActive("Sa thải");
+                    ls.setStatus(false);
+                    ls.setDescribe(nv.getDescribed());
+                    listr.add(ls);
+                    new ReadWriteFile().WriteFileLs(listr,"LichSu.dat",true);
+                        
                         int index= listread.indexOf(nv);
                         listread.remove(index);
                         listread.add(index, nv);

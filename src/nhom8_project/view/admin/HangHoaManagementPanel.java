@@ -11,12 +11,12 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import nhom8_project.entity.hoadon.HoaDon;
 import nhom8_project.entity.hoadon.HoaDonList;
 import nhom8_project.entity.hanghoa.HangHoa;
 import nhom8_project.entity.hanghoa.HangHoaList;
+import nhom8_project.entity.lichsu.LichSu;
+import nhom8_project.utils.DateFormat;
 import nhom8_project.utils.ReadWriteFile;
-import nhom8_project.view.loginView;
 
 /**
  *
@@ -100,6 +100,7 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
                     }
                         gianhap.setText(a.getGiaNhap());
                         giaxuat.setText(a.getGiaBan());
+                        dvt.setText(a.getDonViTinh());
                         btnAddHHM.setEnabled(false);
                         btnEditHHM.setEnabled(true);
                         btnDelete.setEnabled(true);                       
@@ -144,6 +145,7 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
                     }
                         gianhap.setText(a.getGiaNhap());
                         giaxuat.setText(a.getGiaBan());
+                        dvt.setText(a.getDonViTinh());
                         btnAddHHM.setEnabled(false);
                         btnEditHHM.setEnabled(true);
                         btnDelete.setEnabled(true);  
@@ -156,7 +158,8 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
                     ArrayList<HangHoa> list = new ArrayList<HangHoa>();
                     HangHoa hh = new HangHoa();        
                     LocalDateTime dl= LocalDateTime.now();
-                     hh.setHangHoaID(dl.getYear()+""+dl.getMonthValue()+""+dl.getDayOfYear()+""+dl.getHour()+""+dl.getMinute()+""+dl.getSecond()+"");  
+                    String id=dl.getYear()+""+dl.getMonthValue()+""+dl.getDayOfYear()+""+dl.getHour()+""+dl.getMinute()+""+dl.getSecond()+"";
+                     hh.setHangHoaID(id);  
                     if(!hh.setTenHang(ten.getText().trim())){
                         break;
                     }  
@@ -174,6 +177,24 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
                     if(!hh.setGiaBan(giaxuat.getText().trim())){
                      break;
                     }
+                    if(!hh.setDonViTinh(dvt.getText().trim())){
+                        break;
+                    }
+                    
+                    ArrayList<LichSu> listr = new ArrayList<LichSu>();
+                    LichSu ls = new LichSu();
+                    ls.setTime(new DateFormat().DateNow());
+                    ls.setType("Hàng hóa");
+                    ls.setId(id);
+                    ls.setName(mhh.getText().trim());
+                    ls.setActive("Thêm");
+                    ls.setStatus(true);
+                    ls.setDescribe("Không");
+                    listr.add(ls);
+                    new ReadWriteFile().WriteFileLs(listr,"LichSu.dat",true);
+                    
+                    hh.setSoLuongBan("0");
+                    hh.setSoLuongCon("0");
                     list.add(hh);
                     new ReadWriteFile().WriteToHangHoa(list,"hanghoa.dat",true);
                     nvmp.showMessageInf("Thêm thành công");                   
@@ -190,6 +211,7 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
         hsd.setText("");
         gianhap.setText("");
         giaxuat.setText("");
+        dvt.setText("");
     }
     public void EditHH(){   
         if(nvmp.showMessageConfirm("Bạn có chắc chắn muốn sửa", "Thông báo")==JOptionPane.YES_OPTION){                 
@@ -215,7 +237,23 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
                         }
                         if(!hh.setGiaBan(giaxuat.getText().trim())){
                          break;
-                        }                                           
+                        }  
+                        if(!hh.setDonViTinh(dvt.getText().trim())){
+                        break;
+                        }
+                        
+                                ArrayList<LichSu> listr = new ArrayList<LichSu>();
+                                LichSu ls = new LichSu();
+                                ls.setTime(new DateFormat().DateNow());
+                                ls.setType("Hàng hóa");
+                                ls.setId(mhh.getText().trim());
+                                ls.setName(ten.getText().trim());
+                                ls.setActive("Sửa");
+                                ls.setStatus(true);
+                                ls.setDescribe("Không");
+                                listr.add(ls);
+                                new ReadWriteFile().WriteFileLs(listr,"LichSu.dat",true);                
+                        
                                 int index= hhread.indexOf(hh);
                                 hhread.remove(index);
                                 hhread.add(index, hh);
@@ -237,7 +275,20 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
            while(true){
                HangHoa hh  =hhlist.FindByID(mhh.getText());
                if(hh!=null){
-                   if(hhlist.DeleteByID(hh.getHangHoaID())){                     
+                   if(hhlist.DeleteByID(hh.getHangHoaID())){      
+                       
+                        ArrayList<LichSu> listr = new ArrayList<LichSu>();
+                        LichSu ls = new LichSu();
+                        ls.setTime(new DateFormat().DateNow());
+                        ls.setType("Hàng hóa");
+                        ls.setId(mhh.getText());
+                        ls.setName(ten.getText());
+                        ls.setActive("Xóa hàng hóa");
+                        ls.setStatus(false);
+                        ls.setDescribe("Không");
+                        listr.add(ls);
+                        new ReadWriteFile().WriteFileLs(listr,"LichSu.dat",true);
+                       
                        ArrayList<HangHoa> listread = hhlist.getList();
                        new ReadWriteFile().WriteToHangHoa(listread,"hanghoa.dat",false);
                        nvmp.showMessageInf("Xoá thành công"); 
@@ -278,6 +329,8 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         giaxuat = new javax.swing.JTextField();
         cblh = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        dvt = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         txtSearch = new javax.swing.JTextField();
@@ -402,6 +455,8 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
         cblh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hàng mát", "Hàng đông lạnh", "Thực phẩm khô", "Đồ uống", "Bánh kẹo", "Gia dụng", "Khác" }));
         cblh.setSelectedIndex(6);
 
+        jLabel1.setText("Đơn vị tính");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -422,17 +477,21 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(gianhap, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel17)
                             .addComponent(jLabel14))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ten, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(hsd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(hsd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel18)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(gianhap, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(dvt))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -472,7 +531,9 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(giaxuat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel19))
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel1)
+                            .addComponent(dvt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(159, 159, 159))
         );
@@ -587,7 +648,6 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
 
     private void btnAddHHMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddHHMActionPerformed
          try {
-
                 addHH();
         } catch (Exception e) {
             nvmp.showMessageError("Thêm bị lỗi ");
@@ -615,12 +675,17 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        hhlist= new HangHoaList();
-        HangHoa a = hhlist.FindByID(mhh.getText());
-        if(a!=null){
+        try {
+             hhlist= new HangHoaList();
+            HangHoa a = hhlist.FindByID(mhh.getText());
+            if(a!=null){
             new HangHoaDetailDialog(new Admin(), true, a.getTenHang(), a.getLoaiHang(), a.getSoLuongCon(), a.getNSX(),
                     a.getHSD(), a.getGiaNhap(), a.getGiaBan()).setVisible(true);
+            }
+        } catch (Exception e) {
+            nvmp.showMessageError("Lỗi "+e.getMessage());
         }
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -631,10 +696,12 @@ public class HangHoaManagementPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnEditHHM;
     private javax.swing.JButton btnSearchHH;
     private javax.swing.JComboBox<String> cblh;
+    private javax.swing.JTextField dvt;
     private javax.swing.JTextField gianhap;
     private javax.swing.JTextField giaxuat;
     private javax.swing.JTextField hsd;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;

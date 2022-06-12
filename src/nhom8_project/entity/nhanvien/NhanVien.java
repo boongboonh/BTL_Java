@@ -7,6 +7,7 @@ package nhom8_project.entity.nhanvien;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.regex.Pattern;
+import nhom8_project.utils.DateFormat;
 import nhom8_project.view.loginView;
 
 /**
@@ -19,9 +20,9 @@ public class NhanVien implements Serializable{
 
 
     // bắt  lỗi regex
-       Pattern rgname = Pattern.compile("^[a-zA-Z'-'\sáàảãạăâắằấầặẵẫậéèẻ ẽẹếềểễệóòỏõọôốồổỗộ ơớờởỡợíìỉĩịđùúủũụưứ� �ửữựÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠ ƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼ� ��ỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞ ỠỢỤỨỪỬỮỰỲỴÝỶỸửữựỵ ỷỹ]*$"); 
+       Pattern rgname = Pattern.compile("^[a-zA-Z'-'\sáàảãạăâắằấầặẵẫậéèẻ êẽẹếềểễệóòỏõọôốồổỗộ ơớờởỡợíìỉĩịđùúủũụưứ� �ửữựÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠ ƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼ� ��ỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞ ỠỢỤỨỪỬỮỰỲỴÝỶỸửữựỵ ỷỹ]*$"); 
        Pattern rgemail = Pattern.compile("^\\w+@\\w+(\\.\\w+){1,2}$");
-       Pattern rgphone = Pattern.compile("^0\\d+{9}$");
+       Pattern rgphone = Pattern.compile("^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$");
        Pattern rgdate = Pattern.compile("^(?:(?:31(\\\\/|-|\\\\.)(?:0?[13578]|1[02]))\\\\1|(?:(?:29|30)(\\\\/|-|\\\\.)(?:0?[13-9]|1[0-2])\\\\2))(?:(?:1[6-9]|[2-9]\\\\d)?\\\\d{2})$|^(?:29(\\\\/|-|\\\\.)0?2\\\\3(?:(?:(?:1[6-9]|[2-9]\\\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\\\d|2[0-8])(\\\\/|-|\\\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\\\4(?:(?:1[6-9]|[2-9]\\\\d)?\\\\d{2})$");
       
         public String getDescribed() {
@@ -161,7 +162,7 @@ public class NhanVien implements Serializable{
 //          this.password=pass.trim();
 //          check=true;
 //        }else{
-//             new loginView().showMessage("Password phải lớn hơn 6 kí tự");  
+//             new loginView2().showMessage("Password phải lớn hơn 6 kí tự");  
 //        }
 //        return check;
         password=pass;
@@ -178,7 +179,7 @@ public class NhanVien implements Serializable{
         boolean check= false;
         while(true){
            if(birthday!=null&&!birthday.equals("")){
-                if(rgdate.matcher(birthday).find()){
+                if(new DateFormat().DateParse(birthday)){
                 this.birthday =birthday;
                 check=true;
             }else{
